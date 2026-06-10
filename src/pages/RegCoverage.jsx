@@ -1,0 +1,125 @@
+import Plot from '../components/Plot.jsx';
+import data from '../data/dashboardData.json';
+
+const { regSources, domainCfr } = data;
+
+const NAVY = '#1F3564';
+const TEAL = '#0D6E6E';
+const GOLD = '#B8860B';
+
+const plotConfig = { displayModeBar: false, responsive: true };
+
+export default function RegCoverage() {
+  return (
+    <>
+      <div className="db-page-header">
+        <p className="db-page-eyebrow">④ Regulatory Coverage</p>
+        <h2 className="db-page-title">693 Requirements Mapped Across 3 OMB Regulatory Layers</h2>
+        <p className="db-page-desc">Full scope mapped to OMB Final Rule 2024, 2025 Compliance Supplement, and OMB Crosswalk & FAQs — with Dhanasar NIW legal arguments for each domain.</p>
+      </div>
+
+      {/* Source cards */}
+      <div className="reg-source-cards">
+        {regSources.map((s, i) => (
+          <div className="reg-source-card" key={i}>
+            <div className="reg-source-count">{s.count}</div>
+            <div className="reg-source-name">{s.source}</div>
+            <div className="reg-source-area">{s.area}</div>
+            <div className="reg-source-dhanasar">{s.dhanasar}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Charts */}
+      <div className="charts-grid" style={{ marginBottom: 24 }}>
+        <div className="chart-card half">
+          <p className="chart-title">Requirements by Domain</p>
+          <Plot
+            data={[{
+              type: 'bar',
+              orientation: 'h',
+              x: domainCfr.map(d => d.reqs),
+              y: domainCfr.map(d => d.domain),
+              marker: { color: NAVY },
+              text: domainCfr.map(d => d.reqs),
+              textposition: 'outside',
+              hovertemplate: '<b>%{y}</b><br>%{x} requirements<extra></extra>',
+            }]}
+            layout={{
+              margin: { l: 0, r: 50, t: 10, b: 30 },
+              paper_bgcolor: 'transparent',
+              plot_bgcolor: 'transparent',
+              font: { family: 'Arial, sans-serif', size: 11 },
+              xaxis: { gridcolor: '#e0e7f0' },
+              yaxis: { automargin: true },
+              height: 340,
+              showlegend: false,
+            }}
+            config={plotConfig}
+            style={{ width: '100%' }}
+          />
+        </div>
+        <div className="chart-card">
+          <p className="chart-title">Requirements by Regulatory Source</p>
+          <Plot
+            data={[{
+              type: 'bar',
+              x: regSources.map(s => s.source.replace(' (2 CFR Part 200)', '')),
+              y: regSources.map(s => s.count),
+              marker: { color: [NAVY, TEAL, GOLD] },
+              text: regSources.map(s => s.count),
+              textposition: 'outside',
+              hovertemplate: '<b>%{x}</b><br>%{y} requirements<extra></extra>',
+            }]}
+            layout={{
+              margin: { l: 40, r: 20, t: 10, b: 80 },
+              paper_bgcolor: 'transparent',
+              plot_bgcolor: 'transparent',
+              font: { family: 'Arial, sans-serif', size: 11 },
+              xaxis: { tickangle: -20 },
+              yaxis: { gridcolor: '#e0e7f0' },
+              height: 260,
+              showlegend: false,
+            }}
+            config={plotConfig}
+            style={{ width: '100%' }}
+          />
+        </div>
+      </div>
+
+      {/* Domain-to-CFR mapping table */}
+      <div className="db-table-wrap">
+        <div className="db-table-header">
+          <span className="db-table-title">Domain-to-CFR Mapping — 13 Compliance Domains</span>
+          <span className="db-table-count">{domainCfr.length} domains</span>
+        </div>
+        <div className="db-table-scroll">
+          <table className="db-table">
+            <thead>
+              <tr>
+                <th>Compliance Domain</th>
+                <th>Reqs</th>
+                <th>Exhibit 20 Area</th>
+                <th>Key CFR Sections</th>
+                <th>Dhanasar Prong(s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {domainCfr.map((d, i) => (
+                <tr key={i}>
+                  <td style={{ fontWeight: 600 }}>{d.domain}</td>
+                  <td style={{ fontWeight: 700, color: NAVY }}>{d.reqs}</td>
+                  <td style={{ color: '#666', fontSize: 11 }}>{d.area || '—'}</td>
+                  <td style={{ fontSize: 11, color: '#444' }}>{d.cfr}</td>
+                  <td>
+                    <span className="badge badge-inprogress">{d.dhanasar}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  );
+}

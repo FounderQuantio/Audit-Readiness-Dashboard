@@ -1,0 +1,211 @@
+/* ── Dashboard Shell ──────────────────────────────────────────────────────── */
+.db-shell { display: flex; flex-direction: column; min-height: 100vh; background: var(--bg); }
+
+.db-topbar {
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+  border-bottom: 3px solid var(--gold);
+  padding: 0 24px;
+  position: sticky; top: 0; z-index: 100;
+}
+.db-topbar-inner { max-width: 1300px; margin: 0 auto; display: flex; align-items: stretch; gap: 0; }
+
+.db-logo {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 20px 14px 0; border-right: 1px solid rgba(255,255,255,.15);
+  margin-right: 12px; flex-shrink: 0;
+  text-decoration: none;
+}
+.db-logo-icon { font-size: 22px; }
+.db-logo-text { display: flex; flex-direction: column; }
+.db-logo-title { font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700; color: var(--white); line-height: 1.2; }
+.db-logo-sub { font-family: 'Arial', sans-serif; font-size: 10px; color: rgba(255,255,255,.55); letter-spacing: .05em; text-transform: uppercase; }
+
+.db-tabs { display: flex; align-items: stretch; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+.db-tabs::-webkit-scrollbar { display: none; }
+
+.db-tab {
+  background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  padding: 0 14px; height: 54px;
+  font-family: 'Arial', sans-serif; font-size: 11.5px; font-weight: 600;
+  color: rgba(255,255,255,.65);
+  letter-spacing: .03em; white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.db-tab:hover { color: var(--white); background: rgba(255,255,255,.06); }
+.db-tab.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+.db-tab-num { font-size: 10px; opacity: .6; }
+
+.db-content { flex: 1; max-width: 1300px; width: 100%; margin: 0 auto; padding: 28px 24px 60px; }
+
+.db-back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: 1px solid var(--border);
+  color: var(--navy); font-family: 'Arial', sans-serif;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  padding: 6px 14px; border-radius: 4px; margin-bottom: 24px;
+  transition: background .15s;
+}
+.db-back-btn:hover { background: var(--bg-alt); }
+
+/* ── Page Header ─────────────────────────────────────────────────────────── */
+.db-page-header { margin-bottom: 24px; }
+.db-page-eyebrow {
+  font-family: 'Arial', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--teal);
+  margin-bottom: 6px;
+}
+.db-page-title { font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.db-page-desc { font-family: 'Arial', sans-serif; font-size: 13px; color: var(--grey); }
+
+/* ── KPI Cards ───────────────────────────────────────────────────────────── */
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 28px; }
+.kpi-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 18px 16px;
+  display: flex; flex-direction: column; gap: 4px;
+  transition: box-shadow .2s;
+}
+.kpi-card:hover { box-shadow: var(--shadow-md); }
+.kpi-card.highlight { background: var(--navy); border-color: var(--navy); }
+.kpi-card.highlight .kpi-value { color: var(--gold-light); }
+.kpi-card.highlight .kpi-label { color: rgba(255,255,255,.75); }
+.kpi-card.highlight .kpi-sub { color: rgba(255,255,255,.50); }
+.kpi-card.danger { border-left: 4px solid #e53e3e; }
+.kpi-card.warning { border-left: 4px solid var(--gold); }
+.kpi-card.success { border-left: 4px solid var(--success); }
+.kpi-card.info { border-left: 4px solid var(--teal); }
+.kpi-value { font-family: 'Arial', sans-serif; font-size: 32px; font-weight: 900; color: var(--navy); line-height: 1; }
+.kpi-label { font-family: 'Arial', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--grey); }
+.kpi-sub { font-family: 'Arial', sans-serif; font-size: 11px; color: var(--grey); margin-top: 2px; }
+
+/* ── Charts ──────────────────────────────────────────────────────────────── */
+.charts-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+.chart-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+  overflow: hidden;
+}
+.chart-card.wide { grid-column: span 3; }
+.chart-card.half { grid-column: span 2; }
+.chart-title { font-family: 'Arial', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); margin-bottom: 12px; }
+
+/* ── Data Table ──────────────────────────────────────────────────────────── */
+.db-table-wrap {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.db-table-header {
+  padding: 16px 20px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.db-table-title { font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy); }
+.db-table-count { font-family: 'Arial', sans-serif; font-size: 12px; color: var(--grey); }
+
+.db-filters { display: flex; gap: 8px; flex-wrap: wrap; padding: 12px 20px; border-bottom: 1px solid var(--border); background: var(--bg); }
+.db-filter-select {
+  font-family: 'Arial', sans-serif; font-size: 12px;
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 5px 10px; background: var(--white); color: var(--body);
+  cursor: pointer;
+}
+.db-filter-select:focus { outline: 2px solid var(--teal); }
+.db-search {
+  font-family: 'Arial', sans-serif; font-size: 12px;
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 5px 12px; min-width: 200px; color: var(--body);
+}
+.db-search:focus { outline: 2px solid var(--teal); }
+
+.db-table { width: 100%; border-collapse: collapse; font-family: 'Arial', sans-serif; font-size: 12.5px; }
+.db-table th {
+  background: var(--navy); color: var(--white);
+  padding: 10px 14px; text-align: left; font-weight: 700;
+  font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
+  white-space: nowrap; position: sticky; top: 54px;
+}
+.db-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+.db-table tr:nth-child(even) td { background: #fafbfd; }
+.db-table tr:hover td { background: var(--bg-alt); }
+.db-table-scroll { overflow-x: auto; max-height: 520px; overflow-y: auto; }
+
+/* ── Badges ──────────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex; align-items: center;
+  font-family: 'Arial', sans-serif; font-size: 10.5px; font-weight: 700;
+  padding: 2px 8px; border-radius: 3px; white-space: nowrap;
+  letter-spacing: .04em; text-transform: uppercase;
+}
+.badge-high { background: #fde8e8; color: #c0392b; }
+.badge-medium { background: #fef3cd; color: #7d6006; }
+.badge-low { background: #e8f5e9; color: #1a6b3a; }
+.badge-completed { background: #e8f5e9; color: var(--success); }
+.badge-inprogress { background: #e8f0fe; color: #1a56db; }
+.badge-notstarted { background: #f0f0f0; color: #555; }
+.badge-underreview { background: #fdf0e8; color: #b45309; }
+.badge-critical { background: #fde8e8; color: #c0392b; }
+.badge-yes { background: #e8f5e9; color: var(--success); }
+.badge-no { background: #f0f0f0; color: #888; }
+
+/* ── Progress Bar ────────────────────────────────────────────────────────── */
+.progress-bar-wrap { display: flex; align-items: center; gap: 8px; }
+.progress-bar { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; min-width: 60px; }
+.progress-bar-fill { height: 100%; border-radius: 3px; transition: width .4s; }
+.progress-bar-fill.high { background: #e53e3e; }
+.progress-bar-fill.medium { background: var(--gold); }
+.progress-bar-fill.good { background: var(--success); }
+.progress-pct { font-family: 'Arial', sans-serif; font-size: 11px; font-weight: 700; color: var(--navy); min-width: 36px; text-align: right; }
+
+/* ── Risk Matrix specific ────────────────────────────────────────────────── */
+.priority-critical { color: #c0392b; font-weight: 700; }
+.priority-high { color: #b45309; font-weight: 700; }
+
+/* ── Dhanasar Guide ──────────────────────────────────────────────────────── */
+.dhanasar-prong {
+  margin-bottom: 28px;
+}
+.dhanasar-prong-header {
+  background: var(--navy); color: var(--white);
+  padding: 12px 20px; border-radius: var(--radius) var(--radius) 0 0;
+  font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700;
+  letter-spacing: .05em;
+}
+.dhanasar-table-wrap { border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); overflow: hidden; }
+
+/* ── Reg Coverage ────────────────────────────────────────────────────────── */
+.reg-source-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+.reg-source-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+  border-top: 4px solid var(--navy);
+}
+.reg-source-card:nth-child(2) { border-top-color: var(--teal); }
+.reg-source-card:nth-child(3) { border-top-color: var(--gold); }
+.reg-source-count { font-family: 'Arial', sans-serif; font-size: 36px; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+.reg-source-name { font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.reg-source-area { font-family: 'Arial', sans-serif; font-size: 12px; color: var(--grey); line-height: 1.5; margin-bottom: 8px; }
+.reg-source-dhanasar { font-family: 'Arial', sans-serif; font-size: 11px; color: var(--teal); font-style: italic; line-height: 1.5; }
+
+/* ── Evidence Tracker ────────────────────────────────────────────────────── */
+.ev-domain-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.ev-domain-pill {
+  font-family: 'Arial', sans-serif; font-size: 11px; font-weight: 600;
+  padding: 4px 10px; border-radius: 12px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--white); color: var(--grey);
+  transition: background .15s, color .15s;
+}
+.ev-domain-pill.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .charts-grid { grid-template-columns: 1fr; }
+  .chart-card.wide, .chart-card.half { grid-column: span 1; }
+  .reg-source-cards { grid-template-columns: 1fr; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .db-content { padding: 16px 12px 40px; }
+}
+@media (max-width: 600px) {
+  .db-tab-num { display: none; }
+  .db-logo-sub { display: none; }
+}

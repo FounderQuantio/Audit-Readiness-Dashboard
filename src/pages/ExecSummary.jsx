@@ -1,14 +1,16 @@
 import Plot from '../components/Plot.jsx';
 import data from '../data/dashboardData.json';
+import { useTheme } from '../useTheme';
+import { getChartTheme } from '../utils/chartTheme';
 
 const { execSummary: kpi, riskDomains } = data;
 
-const NAVY = '#1F3564';
-const TEAL = '#0D6E6E';
-const GOLD = '#B8860B';
-const SUCCESS = '#1A7A4A';
-const DANGER = '#c0392b';
-const WARN = '#b45309';
+const NAVY = '#C9A84C';
+const TEAL = '#2DD4BF';
+const GOLD = '#C9A84C';
+const SUCCESS = '#22C55E';
+const DANGER = '#EF4444';
+const WARN = '#F97316';
 
 const domains = riskDomains
   .slice()
@@ -16,17 +18,9 @@ const domains = riskDomains
 
 const plotConfig = { displayModeBar: false, responsive: true };
 
-const plotLayout = (overrides = {}) => ({
-  margin: { l: 10, r: 10, t: 10, b: 10 },
-  paper_bgcolor: 'transparent',
-  plot_bgcolor: 'transparent',
-  font: { family: 'Arial, sans-serif', size: 11, color: '#1A1A2E' },
-  showlegend: true,
-  legend: { orientation: 'h', y: -0.15, font: { size: 11 } },
-  ...overrides,
-});
-
 export default function ExecSummary() {
+  const { isDark } = useTheme();
+  const ct = getChartTheme(isDark);
   const completionColor = (pct) => pct >= 50 ? SUCCESS : pct >= 35 ? WARN : DANGER;
 
   return (
@@ -87,12 +81,14 @@ export default function ExecSummary() {
               textposition: 'outside',
               hovertemplate: '<b>%{y}</b><br>Completion: %{x}%<extra></extra>',
             }]}
-            layout={plotLayout({
-              xaxis: { range: [0, 75], ticksuffix: '%', gridcolor: '#e0e7f0' },
-              yaxis: { automargin: true },
+            layout={{
+              paper_bgcolor: 'transparent', plot_bgcolor: 'transparent',
+              font: ct.font, showlegend: false,
+              xaxis: { range: [0, 75], ticksuffix: '%', ...ct.axis },
+              yaxis: { automargin: true, ...ct.axis },
               margin: { l: 0, r: 50, t: 10, b: 30 },
               height: 340,
-            })}
+            }}
             config={plotConfig}
             style={{ width: '100%' }}
           />
@@ -111,12 +107,11 @@ export default function ExecSummary() {
               textinfo: 'label+value',
               hovertemplate: '<b>%{label}</b><br>%{value} requirements<extra></extra>',
             }]}
-            layout={plotLayout({
-              height: 300,
-              legend: { orientation: 'v', x: 1, y: 0.5, font: { size: 11 } },
-              showlegend: false,
-              annotations: [{ text: '297<br>Total', x: 0.5, y: 0.5, font: { size: 14, color: NAVY, family: 'Arial' }, showarrow: false }],
-            })}
+            layout={{
+              paper_bgcolor: 'transparent', plot_bgcolor: 'transparent',
+              font: ct.font, showlegend: false, height: 300,
+              annotations: [{ text: '297<br>Total', x: 0.5, y: 0.5, font: { size: 14, color: ct.annotationColor, family: 'Inter' }, showarrow: false }],
+            }}
             config={plotConfig}
             style={{ width: '100%' }}
           />
@@ -135,11 +130,11 @@ export default function ExecSummary() {
               textinfo: 'label+value',
               hovertemplate: '<b>%{label}</b><br>%{value} requirements<extra></extra>',
             }]}
-            layout={plotLayout({
-              height: 300,
-              showlegend: false,
-              annotations: [{ text: '693<br>Total', x: 0.5, y: 0.5, font: { size: 14, color: NAVY, family: 'Arial' }, showarrow: false }],
-            })}
+            layout={{
+              paper_bgcolor: 'transparent', plot_bgcolor: 'transparent',
+              font: ct.font, showlegend: false, height: 300,
+              annotations: [{ text: '693<br>Total', x: 0.5, y: 0.5, font: { size: 14, color: ct.annotationColor, family: 'Inter' }, showarrow: false }],
+            }}
             config={plotConfig}
             style={{ width: '100%' }}
           />
@@ -172,8 +167,8 @@ export default function ExecSummary() {
                   <td style={{ fontWeight: 600 }}>{d.domain}</td>
                   <td>{d.total}</td>
                   <td style={{ color: SUCCESS, fontWeight: 600 }}>{d.completed}</td>
-                  <td style={{ color: '#1a56db' }}>{d.inProgress}</td>
-                  <td style={{ color: '#888' }}>{d.notStarted}</td>
+                  <td style={{ color: '#2DD4BF' }}>{d.inProgress}</td>
+                  <td style={{ color: 'rgba(255,255,255,0.40)' }}>{d.notStarted}</td>
                   <td style={{ color: DANGER, fontWeight: 600 }}>{d.highRisk}</td>
                   <td>
                     <div className="progress-bar-wrap">

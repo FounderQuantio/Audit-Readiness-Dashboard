@@ -1,15 +1,19 @@
 import Plot from '../components/Plot.jsx';
 import data from '../data/dashboardData.json';
+import { useTheme } from '../useTheme';
+import { getChartTheme } from '../utils/chartTheme';
 
 const { regSources, domainCfr } = data;
 
-const NAVY = '#1F3564';
-const TEAL = '#0D6E6E';
-const GOLD = '#B8860B';
+const NAVY = '#C9A84C';
+const TEAL = '#2DD4BF';
+const GOLD = '#C9A84C';
 
 const plotConfig = { displayModeBar: false, responsive: true };
 
 export default function RegCoverage() {
+  const { isDark } = useTheme();
+  const ct = getChartTheme(isDark);
   return (
     <>
       <div className="db-page-header">
@@ -49,9 +53,9 @@ export default function RegCoverage() {
               margin: { l: 0, r: 50, t: 10, b: 30 },
               paper_bgcolor: 'transparent',
               plot_bgcolor: 'transparent',
-              font: { family: 'Arial, sans-serif', size: 11 },
-              xaxis: { gridcolor: '#e0e7f0' },
-              yaxis: { automargin: true },
+              font: ct.font,
+              xaxis: { ...ct.axis },
+              yaxis: { automargin: true, ...ct.axis },
               height: 340,
               showlegend: false,
             }}
@@ -75,9 +79,9 @@ export default function RegCoverage() {
               margin: { l: 40, r: 20, t: 10, b: 80 },
               paper_bgcolor: 'transparent',
               plot_bgcolor: 'transparent',
-              font: { family: 'Arial, sans-serif', size: 11 },
-              xaxis: { tickangle: -20 },
-              yaxis: { gridcolor: '#e0e7f0' },
+              font: ct.font,
+              xaxis: { tickangle: -20, ...ct.axis },
+              yaxis: { ...ct.axis },
               height: 260,
               showlegend: false,
             }}
@@ -109,8 +113,8 @@ export default function RegCoverage() {
                 <tr key={i}>
                   <td style={{ fontWeight: 600 }}>{d.domain}</td>
                   <td style={{ fontWeight: 700, color: NAVY }}>{d.reqs}</td>
-                  <td style={{ color: '#666', fontSize: 11 }}>{d.area || '—'}</td>
-                  <td style={{ fontSize: 11, color: '#444' }}>{d.cfr}</td>
+                  <td style={{ color: 'rgba(255,255,255,0.40)', fontSize: 11 }}>{d.area || '—'}</td>
+                  <td style={{ fontSize: 11, color: 'rgba(255,255,255,0.50)' }}>{d.cfr}</td>
                   <td>
                     <span className="badge badge-inprogress">{d.dhanasar}</span>
                   </td>

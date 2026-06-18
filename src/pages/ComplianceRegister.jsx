@@ -79,18 +79,18 @@ export default function ComplianceRegister() {
             <tbody>
               {filtered.map((r, i) => (
                 <tr key={i}>
-                  <td style={{ fontFamily: 'monospace', fontSize: 11, color: '#555' }}>{r.id}</td>
-                  <td style={{ fontSize: 11, color: '#666', maxWidth: 120 }}>{r.domain}</td>
+                  <td style={{ fontFamily: 'monospace', fontSize: 11, color: 'rgba(255,255,255,0.40)' }}>{r.id}</td>
+                  <td style={{ fontSize: 11, color: 'rgba(255,255,255,0.50)', maxWidth: 120 }}>{r.domain}</td>
                   <td style={{ maxWidth: 340 }}>{r.statement}</td>
-                  <td style={{ fontSize: 11, color: '#555', whiteSpace: 'nowrap' }}>{r.source}</td>
-                  <td style={{ fontSize: 11, color: '#666' }}>{r.appliesTo}</td>
+                  <td style={{ fontSize: 11, color: 'rgba(255,255,255,0.40)', whiteSpace: 'nowrap' }}>{r.source}</td>
+                  <td style={{ fontSize: 11, color: 'rgba(255,255,255,0.50)' }}>{r.appliesTo}</td>
                   <td><span className={`badge ${RISK_CLASS[r.risk] || 'badge-medium'}`}>{r.risk}</span></td>
                   <td><span className={`badge ${STATUS_CLASS[r.status] || 'badge-notstarted'}`}>{r.status}</span></td>
                   <td><span className={`badge ${r.evidence === 'Yes' ? 'badge-yes' : 'badge-no'}`}>{r.evidence}</span></td>
                 </tr>
               ))}
               {filtered.length === 0 && (
-                <tr><td colSpan={8} style={{ textAlign: 'center', padding: 32, color: '#888', fontFamily: 'Arial' }}>No requirements match the current filters.</td></tr>
+                <tr><td colSpan={8} style={{ textAlign: 'center', padding: 32, color: 'rgba(255,255,255,0.30)' }}>No requirements match the current filters.</td></tr>
               )}
             </tbody>
           </table>

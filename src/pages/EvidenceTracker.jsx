@@ -1,6 +1,8 @@
 import { useState, useMemo } from 'react';
 import Plot from '../components/Plot.jsx';
 import data from '../data/dashboardData.json';
+import { useTheme } from '../useTheme';
+import { getChartTheme } from '../utils/chartTheme';
 
 const { evidence } = data;
 
@@ -21,6 +23,8 @@ const domainSummary = uniqueDomains.map(d => {
 const plotConfig = { displayModeBar: false, responsive: true };
 
 export default function EvidenceTracker() {
+  const { isDark } = useTheme();
+  const ct = getChartTheme(isDark);
   const [riskFilter, setRiskFilter] = useState('All');
   const [activeDomain, setActiveDomain] = useState('All');
   const [search, setSearch] = useState('');
@@ -72,18 +76,18 @@ export default function EvidenceTracker() {
         <p className="chart-title">Pending Evidence by Domain & Risk Level</p>
         <Plot
           data={[
-            { type: 'bar', name: 'High', x: domainSummary.map(d => d.domain), y: domainSummary.map(d => d.high), marker: { color: '#e53e3e' } },
-            { type: 'bar', name: 'Medium', x: domainSummary.map(d => d.domain), y: domainSummary.map(d => d.med), marker: { color: '#B8860B' } },
-            { type: 'bar', name: 'Low', x: domainSummary.map(d => d.domain), y: domainSummary.map(d => d.low), marker: { color: '#1A7A4A' } },
+            { type: 'bar', name: 'High', x: domainSummary.map(d => d.domain), y: domainSummary.map(d => d.high), marker: { color: '#EF4444' } },
+            { type: 'bar', name: 'Medium', x: domainSummary.map(d => d.domain), y: domainSummary.map(d => d.med), marker: { color: '#EAB308' } },
+            { type: 'bar', name: 'Low', x: domainSummary.map(d => d.domain), y: domainSummary.map(d => d.low), marker: { color: '#22C55E' } },
           ]}
           layout={{
             barmode: 'stack',
             margin: { l: 40, r: 20, t: 10, b: 110 },
             paper_bgcolor: 'transparent', plot_bgcolor: 'transparent',
-            font: { family: 'Arial, sans-serif', size: 11 },
-            xaxis: { tickangle: -35, automargin: true },
-            yaxis: { gridcolor: '#e0e7f0', title: 'Pending Items' },
-            legend: { orientation: 'h', y: -0.4 },
+            font: ct.font,
+            xaxis: { tickangle: -35, automargin: true, ...ct.axis },
+            yaxis: { title: 'Pending Items', ...ct.axis },
+            legend: { orientation: 'h', y: -0.4, ...ct.legend },
             height: 320,
           }}
           config={plotConfig}
@@ -135,18 +139,18 @@ export default function EvidenceTracker() {
             <tbody>
               {filtered.map((e, i) => (
                 <tr key={i}>
-                  <td style={{ fontFamily: 'monospace', fontSize: 11, color: '#555' }}>{e.id}</td>
-                  <td style={{ fontSize: 11, color: '#666' }}>{e.domain}</td>
+                  <td style={{ fontFamily: 'monospace', fontSize: 11, color: 'rgba(255,255,255,0.40)' }}>{e.id}</td>
+                  <td style={{ fontSize: 11, color: 'rgba(255,255,255,0.50)' }}>{e.domain}</td>
                   <td style={{ maxWidth: 260 }}>{e.statement}</td>
                   <td style={{ fontSize: 11, whiteSpace: 'nowrap' }}>{e.cfr}</td>
                   <td><span className={`badge ${RISK_CLASS[e.risk] || 'badge-medium'}`}>{e.risk}</span></td>
                   <td><span className={`badge ${STATUS_CLASS[e.status] || 'badge-notstarted'}`}>{e.status}</span></td>
-                  <td style={{ fontSize: 11, color: '#444' }}>{e.docRequired}</td>
-                  <td style={{ fontSize: 10, color: '#0D6E6E', wordBreak: 'break-all' }}>{e.location}</td>
+                  <td style={{ fontSize: 11, color: 'rgba(255,255,255,0.50)' }}>{e.docRequired}</td>
+                  <td style={{ fontSize: 10, color: '#2DD4BF', wordBreak: 'break-all' }}>{e.location}</td>
                 </tr>
               ))}
               {filtered.length === 0 && (
-                <tr><td colSpan={8} style={{ textAlign: 'center', padding: 32, color: '#888', fontFamily: 'Arial' }}>No items match the current filters.</td></tr>
+                <tr><td colSpan={8} style={{ textAlign: 'center', padding: 32, color: 'rgba(255,255,255,0.30)' }}>No items match the current filters.</td></tr>
               )}
             </tbody>
           </table>

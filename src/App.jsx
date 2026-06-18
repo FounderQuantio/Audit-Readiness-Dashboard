@@ -4,12 +4,15 @@ import './index.css';
 import { meta, quickRef, steps } from './data/content';
 import QuickRefAccordion from './components/QuickRefAccordion';
 import StepsAccordion from './components/StepsAccordion';
+import ThemeToggle from './components/ThemeToggle';
+import { useTheme } from './useTheme';
 
 const TOOL_ID  = 'exhibit_20_audit_readiness_dashboard';
 const API_BASE = import.meta.env.VITE_API_URL || '';
 
 export default function App() {
   const navigate = useNavigate();
+  useTheme();
   const [dlCount,   setDlCount]   = useState(null);
   const [recording, setRecording] = useState(false);
 
@@ -58,6 +61,7 @@ export default function App() {
           <div className="header-bottom-row">
             <p className="header-exhibit">{meta.exhibit}</p>
             <div className="download-wrap">
+              <ThemeToggle />
               <a
                 className="download-btn"
                 href="/Exhibit_20_V2_Audit_Readiness_Dashboard_User_Summary.docx"

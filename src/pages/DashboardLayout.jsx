@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../dashboard.css';
+import ThemeToggle from '../components/ThemeToggle';
+import { useTheme } from '../useTheme';
 import ExecSummary from './ExecSummary.jsx';
 import ComplianceRegister from './ComplianceRegister.jsx';
 import RiskMatrix from './RiskMatrix.jsx';
@@ -22,6 +24,7 @@ const PAGES = [ExecSummary, ComplianceRegister, RiskMatrix, RegCoverage, Evidenc
 export default function DashboardLayout() {
   const [active, setActive] = useState(0);
   const navigate = useNavigate();
+  useTheme();
   const Page = PAGES[active];
 
   return (
@@ -46,6 +49,9 @@ export default function DashboardLayout() {
                 {t.label}
               </button>
             ))}
+          </div>
+          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', paddingLeft: 12 }}>
+            <ThemeToggle />
           </div>
         </div>
       </div>

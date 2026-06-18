@@ -1,12 +1,14 @@
 import Plot from '../components/Plot.jsx';
 import data from '../data/dashboardData.json';
+import { useTheme } from '../useTheme';
+import { getChartTheme } from '../utils/chartTheme';
 
 const { riskDomains } = data;
 
-const NAVY = '#1F3564';
-const DANGER = '#e53e3e';
-const GOLD = '#B8860B';
-const SUCCESS = '#1A7A4A';
+const DANGER = '#EF4444';
+const GOLD = '#C9A84C';
+const SUCCESS = '#22C55E';
+const PURPLE = '#A78BFA';
 
 const plotConfig = { displayModeBar: false, responsive: true };
 
@@ -14,6 +16,8 @@ const plotConfig = { displayModeBar: false, responsive: true };
 const sorted = riskDomains.slice().sort((a, b) => b.highRisk - a.highRisk);
 
 export default function RiskMatrix() {
+  const { isDark } = useTheme();
+  const ct = getChartTheme(isDark);
   return (
     <>
       <div className="db-page-header">
@@ -72,7 +76,7 @@ export default function RiskMatrix() {
               name: 'Evidence Gap',
               x: sorted.map(d => d.domain),
               y: sorted.map(d => d.evidGap),
-              marker: { color: '#9b59b6' },
+              marker: { color: PURPLE },
               hovertemplate: '<b>%{x}</b><br>Evidence Gap: %{y}<extra></extra>',
             },
           ]}
@@ -81,10 +85,10 @@ export default function RiskMatrix() {
             margin: { l: 40, r: 20, t: 10, b: 100 },
             paper_bgcolor: 'transparent',
             plot_bgcolor: 'transparent',
-            font: { family: 'Arial, sans-serif', size: 11 },
-            xaxis: { tickangle: -35, automargin: true },
-            yaxis: { gridcolor: '#e0e7f0', title: 'Count' },
-            legend: { orientation: 'h', y: -0.35 },
+            font: ct.font,
+            xaxis: { tickangle: -35, automargin: true, ...ct.axis },
+            yaxis: { title: 'Count', ...ct.axis },
+            legend: { orientation: 'h', y: -0.35, ...ct.legend },
             height: 360,
           }}
           config={plotConfig}
@@ -119,10 +123,10 @@ export default function RiskMatrix() {
                   <td style={{ fontWeight: 600 }}>{d.domain}</td>
                   <td>{d.total}</td>
                   <td style={{ color: SUCCESS, fontWeight: 600 }}>{d.completed}</td>
-                  <td style={{ color: '#1a56db' }}>{d.inProgress}</td>
-                  <td style={{ color: '#888' }}>{d.notStarted}</td>
+                  <td style={{ color: '#2DD4BF' }}>{d.inProgress}</td>
+                  <td style={{ color: 'rgba(255,255,255,0.40)' }}>{d.notStarted}</td>
                   <td style={{ color: DANGER, fontWeight: 700 }}>{d.highRisk}</td>
-                  <td style={{ color: '#9b59b6', fontWeight: 600 }}>{d.evidGap}</td>
+                  <td style={{ color: PURPLE, fontWeight: 600 }}>{d.evidGap}</td>
                   <td>
                     <div className="progress-bar-wrap">
                       <div className="progress-bar">

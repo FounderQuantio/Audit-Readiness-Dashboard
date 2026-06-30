@@ -1,7 +1,7 @@
 export function getChartTheme(isDark) {
-  const textColor   = isDark ? 'rgba(255,255,255,0.55)' : '#374151';
+  const textColor   = isDark ? '#B0B8C8' : '#374151';
   const gridColor   = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
-  const legendColor = isDark ? 'rgba(255,255,255,0.75)' : '#1F2937';
+  const legendColor = isDark ? '#C8D0DC' : '#1F2937';
   const tickFont    = { family: 'Inter, sans-serif', size: 11, color: textColor };
   return {
     annotationColor: isDark ? '#FFFFFF' : '#0F0F0F',

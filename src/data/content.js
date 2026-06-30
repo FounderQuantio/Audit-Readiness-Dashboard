@@ -4,7 +4,7 @@ export const meta = {
   fullTitle: "Federal Grant Compliance Monitoring Workbook — 7 Dashboards · 693 Requirements · 13 Domains",
   exhibit: "Exhibit 20  ·  Version 2  ·  Muhammad Bilal, FCA · FCCA · CFA  ·  April 2026",
   footer:
-    "Exhibit 20  |  Version 2  ·  Audit Readiness Dashboard — Federal Grant Compliance  ·  Muhammad Bilal, FCA · FCCA · CFA  ·  OMB 2 CFR Part 200  ·  PRAC FY2023  ·  EB-2 National Interest Waiver Petition  ·  Confidential",
+    "Audit Readiness Dashboard — Federal Grant Compliance · OMB 2 CFR Part 200 · PRAC FY2023 · Confidential",
 };
 
 export const quickRef = [

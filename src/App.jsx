@@ -52,14 +52,12 @@ export default function App() {
 
       <header className="site-header">
         <div className="header-inner">
-          <div className="header-badge">Exhibit 20 · EB-2 NIW Petition</div>
           <h1 className="header-title">
             {meta.title}&nbsp;·&nbsp;<span>{meta.subtitle}</span>
           </h1>
           <p className="header-subtitle">{meta.fullTitle}</p>
           <div className="header-divider" />
           <div className="header-bottom-row">
-            <p className="header-exhibit">{meta.exhibit}</p>
             <div className="download-wrap">
               <ThemeToggle />
               <a
@@ -68,7 +66,7 @@ export default function App() {
                 download="Exhibit_20_V2_Audit_Readiness_Dashboard_User_Summary.docx"
                 onClick={handleDownload}
               >
-                ⬇ Download Full Exhibit (.docx)
+                ⬇ Download Full Dashboard (.docx)
               </a>
               {dlCount !== null && (
                 <span className="download-count">

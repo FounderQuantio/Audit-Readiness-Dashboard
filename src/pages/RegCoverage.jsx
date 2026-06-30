@@ -103,7 +103,6 @@ export default function RegCoverage() {
               <tr>
                 <th>Compliance Domain</th>
                 <th>Reqs</th>
-                <th>Exhibit 20 Area</th>
                 <th>Key CFR Sections</th>
                 <th>Dhanasar Prong(s)</th>
               </tr>
@@ -113,7 +112,6 @@ export default function RegCoverage() {
                 <tr key={i}>
                   <td style={{ fontWeight: 600 }}>{d.domain}</td>
                   <td style={{ fontWeight: 700, color: NAVY }}>{d.reqs}</td>
-                  <td style={{ color: 'rgba(255,255,255,0.40)', fontSize: 11 }}>{d.area || '—'}</td>
                   <td style={{ fontSize: 11, color: 'rgba(255,255,255,0.50)' }}>{d.cfr}</td>
                   <td>
                     <span className="badge badge-inprogress">{d.dhanasar}</span>

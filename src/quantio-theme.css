@@ -36,22 +36,22 @@
   --qg-text-3:          rgba(255, 255, 255, 0.50);
   --qg-text-4:          rgba(255, 255, 255, 0.30);
 
-  /* Semantic colours (keep recognisable — only backgrounds go dark) */
-  --qg-red:             #EF4444;
-  --qg-red-bg:          rgba(239, 68, 68, 0.13);
-  --qg-red-border:      rgba(239, 68, 68, 0.28);
+  /* Semantic colours — muted for dark backgrounds */
+  --qg-red:             #C05050;
+  --qg-red-bg:          rgba(192, 80, 80, 0.13);
+  --qg-red-border:      rgba(192, 80, 80, 0.28);
 
-  --qg-orange:          #F97316;
-  --qg-orange-bg:       rgba(249, 115, 22, 0.13);
-  --qg-orange-border:   rgba(249, 115, 22, 0.28);
+  --qg-orange:          #C97830;
+  --qg-orange-bg:       rgba(201, 120, 48, 0.13);
+  --qg-orange-border:   rgba(201, 120, 48, 0.28);
 
-  --qg-yellow:          #EAB308;
-  --qg-yellow-bg:       rgba(234, 179, 8, 0.13);
-  --qg-yellow-border:   rgba(234, 179, 8, 0.28);
+  --qg-yellow:          #C9A44A;
+  --qg-yellow-bg:       rgba(201, 164, 74, 0.13);
+  --qg-yellow-border:   rgba(201, 164, 74, 0.28);
 
-  --qg-green:           #22C55E;
-  --qg-green-bg:        rgba(34, 197, 94, 0.13);
-  --qg-green-border:    rgba(34, 197, 94, 0.28);
+  --qg-green:           #4EA878;
+  --qg-green-bg:        rgba(78, 168, 120, 0.13);
+  --qg-green-border:    rgba(78, 168, 120, 0.28);
 
   --qg-purple:          #A78BFA;
   --qg-purple-bg:       rgba(167, 139, 250, 0.13);
@@ -795,13 +795,17 @@ input, textarea, select, button {
   --qg-text-3:          rgba(0,0,0,0.50);
   --qg-text-4:          rgba(0,0,0,0.30);
 
-  /* Semantic backgrounds lightened for white surface */
+  /* Semantic colours — vivid on white */
+  --qg-red:             #EF4444;
   --qg-red-bg:          rgba(239, 68, 68, 0.09);
   --qg-red-border:      rgba(239, 68, 68, 0.25);
+  --qg-orange:          #F97316;
   --qg-orange-bg:       rgba(249,115, 22, 0.09);
   --qg-orange-border:   rgba(249,115, 22, 0.25);
+  --qg-yellow:          #EAB308;
   --qg-yellow-bg:       rgba(234,179,  8, 0.09);
   --qg-yellow-border:   rgba(234,179,  8, 0.25);
+  --qg-green:           #22C55E;
   --qg-green-bg:        rgba( 34,197, 94, 0.09);
   --qg-green-border:    rgba( 34,197, 94, 0.25);
   --qg-purple-bg:       rgba(167,139,250, 0.09);

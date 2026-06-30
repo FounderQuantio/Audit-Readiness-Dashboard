@@ -8,18 +8,15 @@ import ComplianceRegister from './ComplianceRegister.jsx';
 import RiskMatrix from './RiskMatrix.jsx';
 import RegCoverage from './RegCoverage.jsx';
 import EvidenceTracker from './EvidenceTracker.jsx';
-import DhanasarGuide from './DhanasarGuide.jsx';
-
 const TABS = [
   { num: '①', label: 'Executive Summary' },
   { num: '②', label: 'Compliance Register' },
   { num: '③', label: 'Risk Priority Matrix' },
   { num: '④', label: 'Regulatory Coverage' },
   { num: '⑤', label: 'Evidence Tracker' },
-  { num: '⑥', label: 'Dhanasar Relevance Guide' },
 ];
 
-const PAGES = [ExecSummary, ComplianceRegister, RiskMatrix, RegCoverage, EvidenceTracker, DhanasarGuide];
+const PAGES = [ExecSummary, ComplianceRegister, RiskMatrix, RegCoverage, EvidenceTracker];
 
 export default function DashboardLayout() {
   const [active, setActive] = useState(0);

@@ -111,9 +111,14 @@
 .db-table-count { font-size: 12px; color: var(--qg-text-3); }
 
 .db-filters {
-  display: flex; gap: 8px; flex-wrap: wrap;
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
   padding: 12px 20px; border-bottom: 1px solid var(--qg-border);
   background: var(--qg-surface-2);
+}
+.db-filter-group { display: flex; align-items: center; gap: 5px; }
+.db-filter-label {
+  font-size: 10.5px; font-weight: 700; color: var(--qg-text-3);
+  text-transform: uppercase; letter-spacing: .05em; white-space: nowrap;
 }
 .db-filter-select {
   font-family: var(--qg-font); font-size: 12px;
@@ -134,11 +139,14 @@
 
 .db-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
 .db-table th {
+  position: sticky; top: 0; z-index: 1;
   background: var(--qg-surface-2); color: var(--qg-text-3);
   padding: 10px 14px; text-align: left; font-weight: var(--qg-weight-bold);
   font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
   white-space: nowrap; border-bottom: 1px solid var(--qg-border-2);
+  cursor: pointer; user-select: none; transition: color .15s;
 }
+.db-table th:hover { color: var(--qg-gold); }
 .db-table td {
   padding: 9px 14px; border-bottom: 1px solid var(--qg-border);
   color: var(--qg-text-2); vertical-align: top; line-height: 1.5;
@@ -146,6 +154,17 @@
 .db-table tbody tr:nth-child(even) td { background: rgba(255,255,255,0.018); }
 .db-table tbody tr:hover td { background: rgba(255,255,255,0.04); }
 .db-table-scroll { overflow-x: auto; max-height: 520px; overflow-y: auto; }
+
+/* ── Inline edit controls ────────────────────────────────────────────────── */
+.db-edit-select, .db-edit-input {
+  font-family: var(--qg-font); font-size: 11px;
+  border: 1px solid var(--qg-gold-border); border-radius: var(--qg-radius-md);
+  padding: 3px 7px; background: var(--qg-surface); color: var(--qg-text-1);
+  outline: none; color-scheme: dark; width: 100%; max-width: 140px;
+}
+.db-edit-select:focus, .db-edit-input:focus {
+  border-color: var(--qg-gold); box-shadow: 0 0 0 2px var(--qg-gold-tint-3);
+}
 
 /* ── Badges ──────────────────────────────────────────────────────────────── */
 .badge {

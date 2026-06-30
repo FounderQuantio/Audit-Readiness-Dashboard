@@ -52,6 +52,9 @@ const plotConfig = { displayModeBar: false, responsive: true };
 export default function EvidenceTracker() {
   const { isDark } = useTheme();
   const ct = getChartTheme(isDark);
+  const DANGER  = isDark ? '#C05050' : '#EF4444';
+  const WARN    = isDark ? '#C97830' : '#F97316';
+  const SUCCESS = isDark ? '#4EA878' : '#22C55E';
   const [riskFilter, setRiskFilter] = useState('All');
   const [activeDomain, setActiveDomain] = useState('All');
   const [search, setSearch] = useState('');
@@ -133,9 +136,9 @@ export default function EvidenceTracker() {
         <p className="chart-title">Pending Evidence by Domain & Risk Level</p>
         <Plot
           data={[
-            { type: 'bar', name: 'High', x: domainSummary.map(d => d.domain), y: domainSummary.map(d => d.high), marker: { color: '#EF4444' } },
-            { type: 'bar', name: 'Medium', x: domainSummary.map(d => d.domain), y: domainSummary.map(d => d.med), marker: { color: '#EAB308' } },
-            { type: 'bar', name: 'Low', x: domainSummary.map(d => d.domain), y: domainSummary.map(d => d.low), marker: { color: '#22C55E' } },
+            { type: 'bar', name: 'High', x: domainSummary.map(d => d.domain), y: domainSummary.map(d => d.high), marker: { color: DANGER } },
+            { type: 'bar', name: 'Medium', x: domainSummary.map(d => d.domain), y: domainSummary.map(d => d.med), marker: { color: WARN } },
+            { type: 'bar', name: 'Low', x: domainSummary.map(d => d.domain), y: domainSummary.map(d => d.low), marker: { color: SUCCESS } },
           ]}
           layout={{
             barmode: 'stack',

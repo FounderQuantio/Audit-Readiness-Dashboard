@@ -63,8 +63,8 @@ export default function App() {
               <ThemeToggle />
               <a
                 className="download-btn"
-                href="/Audit_Readiness_Framework.docx"
-                download="Audit_Readiness_Framework.docx"
+                href="/Audit Readiness Framework.docx"
+                download="Audit Readiness Framework.docx"
                 onClick={handleDownload}
               >
                 ⬇ Download Full Dashboard (.docx)

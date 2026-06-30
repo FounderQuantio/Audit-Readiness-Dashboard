@@ -2,12 +2,12 @@ import { useState, useMemo } from 'react';
 import Plot from '../components/Plot.jsx';
 import data from '../data/dashboardData.json';
 import { useTheme } from '../useTheme';
-import { getChartTheme } from '../utils/chartTheme';
+import { getChartTheme, getSemanticColors } from '../utils/chartTheme';
 
 const { riskDomains } = data;
 
 const GOLD   = '#C9A84C';
-const PURPLE = '#2DD4BF';
+// teal is now derived per-theme inside the component (TEAL_C / PURPLE alias)
 
 const plotConfig = { displayModeBar: false, responsive: true };
 
@@ -33,8 +33,8 @@ function SortIcon({ active, dir }) {
 export default function RiskMatrix() {
   const { isDark } = useTheme();
   const ct = getChartTheme(isDark);
-  const DANGER  = isDark ? '#C05050' : '#EF4444';
-  const SUCCESS = isDark ? '#4EA878' : '#22C55E';
+  const { danger: DANGER, success: SUCCESS, teal: TEAL_C } = getSemanticColors(isDark);
+  const PURPLE = TEAL_C;
   const [sort, setSort]       = useState({ col: 'highRisk', dir: 'desc' });
   const [search, setSearch]   = useState('');
   const [priority, setPriority] = useState('All');
@@ -191,7 +191,7 @@ export default function RiskMatrix() {
                   <td style={{ fontWeight: 600 }}>{d.domain}</td>
                   <td>{d.total}</td>
                   <td style={{ color: SUCCESS, fontWeight: 600 }}>{d.completed}</td>
-                  <td style={{ color: '#2DD4BF' }}>{d.inProgress}</td>
+                  <td style={{ color: TEAL_C }}>{d.inProgress}</td>
                   <td style={{ color: 'var(--qg-text-2)' }}>{d.notStarted}</td>
                   <td style={{ color: DANGER, fontWeight: 700 }}>{d.highRisk}</td>
                   <td style={{ color: PURPLE, fontWeight: 600 }}>{d.evidGap}</td>

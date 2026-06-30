@@ -1,12 +1,11 @@
 import Plot from '../components/Plot.jsx';
 import data from '../data/dashboardData.json';
 import { useTheme } from '../useTheme';
-import { getChartTheme } from '../utils/chartTheme';
+import { getChartTheme, getSemanticColors } from '../utils/chartTheme';
 
 const { execSummary: kpi, riskDomains } = data;
 
 const NAVY = '#C9A84C';
-const TEAL = '#2DD4BF';
 const GOLD = '#C9A84C';
 
 const domains = riskDomains
@@ -18,9 +17,7 @@ const plotConfig = { displayModeBar: false, responsive: true };
 export default function ExecSummary() {
   const { isDark } = useTheme();
   const ct = getChartTheme(isDark);
-  const SUCCESS = isDark ? '#4EA878' : '#22C55E';
-  const DANGER  = isDark ? '#C05050' : '#EF4444';
-  const WARN    = isDark ? '#C97830' : '#F97316';
+  const { success: SUCCESS, danger: DANGER, warn: WARN, teal: TEAL } = getSemanticColors(isDark);
   const completionColor = (pct) => pct >= 50 ? SUCCESS : pct >= 35 ? WARN : DANGER;
 
   return (
@@ -167,7 +164,7 @@ export default function ExecSummary() {
                   <td style={{ fontWeight: 600 }}>{d.domain}</td>
                   <td>{d.total}</td>
                   <td style={{ color: SUCCESS, fontWeight: 600 }}>{d.completed}</td>
-                  <td style={{ color: '#2DD4BF' }}>{d.inProgress}</td>
+                  <td style={{ color: TEAL }}>{d.inProgress}</td>
                   <td style={{ color: 'var(--qg-text-2)' }}>{d.notStarted}</td>
                   <td style={{ color: DANGER, fontWeight: 600 }}>{d.highRisk}</td>
                   <td>

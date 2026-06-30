@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import Plot from '../components/Plot.jsx';
 import data from '../data/dashboardData.json';
 import { useTheme } from '../useTheme';
-import { getChartTheme } from '../utils/chartTheme';
+import { getChartTheme, getSemanticColors } from '../utils/chartTheme';
 
 const { evidence: rawEvidence } = data;
 
@@ -52,9 +52,7 @@ const plotConfig = { displayModeBar: false, responsive: true };
 export default function EvidenceTracker() {
   const { isDark } = useTheme();
   const ct = getChartTheme(isDark);
-  const DANGER  = isDark ? '#C05050' : '#EF4444';
-  const WARN    = isDark ? '#C97830' : '#F97316';
-  const SUCCESS = isDark ? '#4EA878' : '#22C55E';
+  const { danger: DANGER, warn: WARN, success: SUCCESS, teal: TEAL } = getSemanticColors(isDark);
   const [riskFilter, setRiskFilter] = useState('All');
   const [activeDomain, setActiveDomain] = useState('All');
   const [search, setSearch] = useState('');
@@ -207,7 +205,7 @@ export default function EvidenceTracker() {
                   <td><span className={`badge ${RISK_CLASS[e.risk] || 'badge-medium'}`}>{e.risk}</span></td>
                   <td><span className={`badge ${STATUS_CLASS[e.status] || 'badge-notstarted'}`}>{e.status}</span></td>
                   <td style={{ fontSize: 11, color: 'var(--qg-text-2)', maxWidth: 200 }}>{e.docRequired}</td>
-                  <td style={{ fontSize: 10, color: '#2DD4BF', wordBreak: 'break-all' }}>{e.location}</td>
+                  <td style={{ fontSize: 10, color: TEAL, wordBreak: 'break-all' }}>{e.location}</td>
                 </tr>
               ))}
               {filtered.length === 0 && (

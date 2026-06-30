@@ -8,12 +8,12 @@ import ThemeToggle from './components/ThemeToggle';
 import { useTheme } from './useTheme';
 
 const TOOL_ID  = 'exhibit_20_audit_readiness_dashboard';
-const API_BASE = import.meta.env.VITE_API_URL || '';
+const API_BASE = 'https://niw-tools-api-production.up.railway.app';
 
 export default function App() {
   const navigate = useNavigate();
   useTheme();
-  const [dlCount,   setDlCount]   = useState(0);
+  const [dlCount,   setDlCount]   = useState(null);
   const [recording, setRecording] = useState(false);
 
   useEffect(() => {

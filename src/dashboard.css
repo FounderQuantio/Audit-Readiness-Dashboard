@@ -251,3 +251,9 @@
   .db-tab-num { display: none; }
   .db-logo-sub { display: none; }
 }
+
+/* ── Plotly chart text — CSS override (more reliable than Plotly's JS font API) ── */
+/* Dark mode (default): bright text on dark background */
+.js-plotly-plot text { fill: rgba(255,255,255,0.85) !important; }
+/* Light mode: near-black text on white background */
+:root[data-theme="light"] .js-plotly-plot text { fill: #1F2937 !important; }

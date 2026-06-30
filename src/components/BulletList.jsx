@@ -4,11 +4,9 @@ export default function BulletList({ items }) {
       {items.map((item, i) => (
         <li key={i}>
           {typeof item === 'string' ? (
-            item
+            <span className="bullet-text-full">{item}</span>
           ) : (
-            <>
-              <b>{item.label}</b>&nbsp;{item.text}
-            </>
+            <><b>{item.label}</b><span>{item.text}</span></>
           )}
         </li>
       ))}

@@ -30,7 +30,7 @@ export default function StepsAccordion({ steps }) {
                   {step.intro && <p className="content-p">{step.intro}</p>}
                   <BulletList items={step.bullets} />
                   {step.closing && (
-                    <div className="content-callout">{step.closing}</div>
+                    <div className="content-callout"><strong>The bottom line:</strong> {step.closing}</div>
                   )}
                 </div>
               </div>

@@ -11,7 +11,7 @@ export default function AccordionBody({ item }) {
           <p key={i} className="content-p">{p}</p>
         ))}
         <BulletList items={item.bullets} />
-        <div className="content-callout">{item.callout}</div>
+        <div className="content-callout"><strong>The bottom line:</strong> {item.callout}</div>
       </div>
     );
   }
@@ -24,7 +24,7 @@ export default function AccordionBody({ item }) {
           <div key={i}>
             <p className="content-sub">{sub.title}</p>
             <BulletList items={sub.bullets} />
-            {sub.callout && <div className="content-callout">{sub.callout}</div>}
+            {sub.callout && <div className="content-callout"><strong>The bottom line:</strong> {sub.callout}</div>}
           </div>
         ))}
       </div>

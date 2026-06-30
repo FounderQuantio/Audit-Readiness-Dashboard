@@ -1,7 +1,7 @@
 export function getChartTheme(isDark) {
-  const textColor   = isDark ? '#B0B8C8' : '#374151';
+  const textColor   = isDark ? '#B0B8C8' : '#111827';
   const gridColor   = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
-  const legendColor = isDark ? '#C8D0DC' : '#1F2937';
+  const legendColor = isDark ? '#C8D0DC' : '#111827';
   const tickFont    = { family: 'Inter, sans-serif', size: 11, color: textColor };
   return {
     annotationColor: isDark ? '#FFFFFF' : '#0F0F0F',
@@ -17,8 +17,8 @@ export function getSemanticColors(isDark) {
     danger:  isDark ? '#C05050' : '#DC2626',
     warn:    isDark ? '#C97830' : '#EA580C',
     success: isDark ? '#4EA878' : '#16A34A',
-    teal:    isDark ? '#2DD4BF' : '#0D9488',
+    teal:    isDark ? '#2DD4BF' : '#0F766E',
     gold:    '#C9A84C',
-    purple:  isDark ? '#2DD4BF' : '#0D9488',
+    purple:  isDark ? '#2DD4BF' : '#0F766E',
   };
 }

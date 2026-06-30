@@ -13,7 +13,7 @@ const API_BASE = import.meta.env.VITE_API_URL || '';
 export default function App() {
   const navigate = useNavigate();
   useTheme();
-  const [dlCount,   setDlCount]   = useState(null);
+  const [dlCount,   setDlCount]   = useState(0);
   const [recording, setRecording] = useState(false);
 
   useEffect(() => {

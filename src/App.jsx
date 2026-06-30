@@ -26,6 +26,7 @@ export default function App() {
   const handleDownload = async () => {
     if (recording) return;
     setRecording(true);
+    setDlCount(c => c + 1);
     try {
       const res = await fetch(`${API_BASE}/api/v1/downloads/${TOOL_ID}`, {
         method: 'POST',
@@ -62,8 +63,8 @@ export default function App() {
               <ThemeToggle />
               <a
                 className="download-btn"
-                href="/Audit_Readiness_Dashboard_User_Summary.docx"
-                download="Audit_Readiness_Dashboard_User_Summary.docx"
+                href="/Audit_Readiness_Framework.docx"
+                download="Audit_Readiness_Framework.docx"
                 onClick={handleDownload}
               >
                 ⬇ Download Full Dashboard (.docx)

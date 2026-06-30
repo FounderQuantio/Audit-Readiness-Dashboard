@@ -7,7 +7,7 @@ import { getChartTheme } from '../utils/chartTheme';
 const { riskDomains } = data;
 
 const GOLD   = '#C9A84C';
-const PURPLE = '#A78BFA';
+const PURPLE = '#2DD4BF';
 
 const plotConfig = { displayModeBar: false, responsive: true };
 

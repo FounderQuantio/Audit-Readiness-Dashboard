@@ -62,8 +62,8 @@ export default function App() {
               <ThemeToggle />
               <a
                 className="download-btn"
-                href="/Exhibit_20_V2_Audit_Readiness_Dashboard_User_Summary.docx"
-                download="Exhibit_20_V2_Audit_Readiness_Dashboard_User_Summary.docx"
+                href="/Audit_Readiness_Dashboard_User_Summary.docx"
+                download="Audit_Readiness_Dashboard_User_Summary.docx"
                 onClick={handleDownload}
               >
                 ⬇ Download Full Dashboard (.docx)

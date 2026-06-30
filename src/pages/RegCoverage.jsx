@@ -29,7 +29,6 @@ export default function RegCoverage() {
             <div className="reg-source-count">{s.count}</div>
             <div className="reg-source-name">{s.source}</div>
             <div className="reg-source-area">{s.area}</div>
-            <div className="reg-source-dhanasar">{s.dhanasar}</div>
           </div>
         ))}
       </div>
@@ -102,20 +101,18 @@ export default function RegCoverage() {
             <thead>
               <tr>
                 <th>Compliance Domain</th>
+                <th>Domain</th>
                 <th>Reqs</th>
                 <th>Key CFR Sections</th>
-                <th>Dhanasar Prong(s)</th>
               </tr>
             </thead>
             <tbody>
               {domainCfr.map((d, i) => (
                 <tr key={i}>
                   <td style={{ fontWeight: 600 }}>{d.domain}</td>
+                  <td style={{ fontSize: 11, color: 'var(--qg-text-3)' }}>{d.area}</td>
                   <td style={{ fontWeight: 700, color: NAVY }}>{d.reqs}</td>
-                  <td style={{ fontSize: 11, color: 'rgba(255,255,255,0.50)' }}>{d.cfr}</td>
-                  <td>
-                    <span className="badge badge-inprogress">{d.dhanasar}</span>
-                  </td>
+                  <td style={{ fontSize: 11, color: 'var(--qg-text-2)' }}>{d.cfr}</td>
                 </tr>
               ))}
             </tbody>

@@ -4,10 +4,37 @@ import data from '../data/dashboardData.json';
 import { useTheme } from '../useTheme';
 import { getChartTheme } from '../utils/chartTheme';
 
-const { evidence } = data;
+const { evidence: rawEvidence } = data;
 
-const RISK_CLASS = { High: 'badge-high', Medium: 'badge-medium', Low: 'badge-low' };
+const DOMAIN_MAP = {
+  'Governance & Oversig':       'Governance & Oversight',
+  'Cost Principles & Al':       'Cost Principles & Allowability',
+  'Procurement Standard':       'Procurement Standards',
+  'Subrecipient Monitor':       'Subrecipient Monitoring',
+  'Audit Preparation (S':       'Audit Preparation (Single Audit)',
+};
+const fixDomain = d => DOMAIN_MAP[d] || d;
+
+const evidence = rawEvidence.map(e => ({ ...e, domain: fixDomain(e.domain) }));
+
+const RISK_CLASS   = { High: 'badge-high', Medium: 'badge-medium', Low: 'badge-low' };
 const STATUS_CLASS = { 'Not Started': 'badge-notstarted', 'In Progress': 'badge-inprogress', 'Completed': 'badge-completed' };
+
+const COLS = [
+  { label: 'Req ID',                  key: 'id' },
+  { label: 'Domain',                  key: 'domain' },
+  { label: 'Requirement',             key: 'statement' },
+  { label: 'CFR Reference',           key: 'cfr' },
+  { label: 'Risk',                    key: 'risk' },
+  { label: 'Status',                  key: 'status' },
+  { label: 'Documentation Required',  key: 'docRequired' },
+  { label: 'Evidence Location',       key: 'location' },
+];
+
+function SortIcon({ active, dir }) {
+  if (!active) return <span style={{ opacity: 0.55, marginLeft: 4, fontSize: 10 }}>⇅</span>;
+  return <span style={{ color: 'var(--qg-gold)', marginLeft: 4 }}>{dir === 'asc' ? '↑' : '↓'}</span>;
+}
 
 const uniqueDomains = Array.from(new Set(evidence.map(e => e.domain))).sort();
 
@@ -28,16 +55,35 @@ export default function EvidenceTracker() {
   const [riskFilter, setRiskFilter] = useState('All');
   const [activeDomain, setActiveDomain] = useState('All');
   const [search, setSearch] = useState('');
+  const [sort, setSort] = useState({ col: null, dir: 'asc' });
 
-  const filtered = useMemo(() => evidence.filter(e => {
-    if (riskFilter !== 'All' && e.risk !== riskFilter) return false;
-    if (activeDomain !== 'All' && e.domain !== activeDomain) return false;
-    if (search) {
-      const q = search.toLowerCase();
-      return e.id.toLowerCase().includes(q) || e.statement.toLowerCase().includes(q) || e.cfr.toLowerCase().includes(q);
+  const toggleSort = (col) => {
+    setSort(prev =>
+      prev.col === col
+        ? { col, dir: prev.dir === 'asc' ? 'desc' : 'asc' }
+        : { col, dir: 'asc' }
+    );
+  };
+
+  const filtered = useMemo(() => {
+    let rows = evidence.filter(e => {
+      if (riskFilter !== 'All' && e.risk !== riskFilter) return false;
+      if (activeDomain !== 'All' && e.domain !== activeDomain) return false;
+      if (search) {
+        const q = search.toLowerCase();
+        return e.id.toLowerCase().includes(q) || e.statement.toLowerCase().includes(q) || e.cfr.toLowerCase().includes(q);
+      }
+      return true;
+    });
+    if (sort.col) {
+      rows = [...rows].sort((a, b) => {
+        const av = (a[sort.col] || '').toString().toLowerCase();
+        const bv = (b[sort.col] || '').toString().toLowerCase();
+        return sort.dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+      });
     }
-    return true;
-  }), [riskFilter, activeDomain, search]);
+    return rows;
+  }, [riskFilter, activeDomain, search, sort]);
 
   return (
     <>
@@ -45,6 +91,17 @@ export default function EvidenceTracker() {
         <p className="db-page-eyebrow">⑤ Evidence Tracker</p>
         <h2 className="db-page-title">Pending Evidence — Action Register</h2>
         <p className="db-page-desc">193 of 297 requirements still require evidence collection. Sorted High risk first. Upload documents to GitHub then update the Compliance Register.</p>
+      </div>
+
+      {/* Completion rate banner */}
+      <div style={{ background: 'var(--qg-surface)', border: '1px solid var(--qg-gold-border)', borderRadius: 'var(--qg-radius-xl)', padding: '14px 20px', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
+        <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--qg-gold)', whiteSpace: 'nowrap' }}>Completion Rate</span>
+        <div style={{ flex: 1, minWidth: 160 }}>
+          <div className="progress-bar" style={{ height: 8 }}>
+            <div className="progress-bar-fill medium" style={{ width: '41%' }} />
+          </div>
+        </div>
+        <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--qg-text-1)', whiteSpace: 'nowrap' }}>41% &nbsp;<span style={{ fontWeight: 400, color: 'var(--qg-text-3)', fontSize: 12 }}>122 of 297 requirements have evidence collected</span></span>
       </div>
 
       {/* KPIs */}
@@ -115,42 +172,43 @@ export default function EvidenceTracker() {
         </div>
         <div className="db-filters">
           <input className="db-search" placeholder="Search by ID, requirement, or CFR…" value={search} onChange={e => setSearch(e.target.value)} />
-          <select className="db-filter-select" value={riskFilter} onChange={e => setRiskFilter(e.target.value)}>
-            <option>All</option>
-            <option>High</option>
-            <option>Medium</option>
-            <option>Low</option>
-          </select>
+          <div className="db-filter-group">
+            <span className="db-filter-label">Risk</span>
+            <select className="db-filter-select" value={riskFilter} onChange={e => setRiskFilter(e.target.value)}>
+              <option>All</option>
+              <option>High</option>
+              <option>Medium</option>
+              <option>Low</option>
+            </select>
+          </div>
         </div>
         <div className="db-table-scroll">
           <table className="db-table">
             <thead>
               <tr>
-                <th>Req ID</th>
-                <th>Domain</th>
-                <th>Requirement</th>
-                <th>CFR Reference</th>
-                <th>Risk</th>
-                <th>Status</th>
-                <th>Documentation Required</th>
-                <th>Evidence Location (GitHub)</th>
+                {COLS.map(c => (
+                  <th key={c.key} onClick={() => toggleSort(c.key)}>
+                    {c.label}
+                    <SortIcon active={sort.col === c.key} dir={sort.dir} />
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
               {filtered.map((e, i) => (
                 <tr key={i}>
-                  <td style={{ fontFamily: 'monospace', fontSize: 11, color: 'rgba(255,255,255,0.40)' }}>{e.id}</td>
-                  <td style={{ fontSize: 11, color: 'rgba(255,255,255,0.50)' }}>{e.domain}</td>
+                  <td style={{ fontFamily: 'monospace', fontSize: 11, color: 'var(--qg-text-3)', whiteSpace: 'nowrap' }}>{e.id}</td>
+                  <td style={{ fontSize: 11, color: 'var(--qg-text-3)' }}>{e.domain}</td>
                   <td style={{ maxWidth: 260 }}>{e.statement}</td>
-                  <td style={{ fontSize: 11, whiteSpace: 'nowrap' }}>{e.cfr}</td>
+                  <td style={{ fontSize: 11, whiteSpace: 'nowrap', color: 'var(--qg-text-2)' }}>{e.cfr}</td>
                   <td><span className={`badge ${RISK_CLASS[e.risk] || 'badge-medium'}`}>{e.risk}</span></td>
                   <td><span className={`badge ${STATUS_CLASS[e.status] || 'badge-notstarted'}`}>{e.status}</span></td>
-                  <td style={{ fontSize: 11, color: 'rgba(255,255,255,0.50)' }}>{e.docRequired}</td>
+                  <td style={{ fontSize: 11, color: 'var(--qg-text-2)', maxWidth: 200 }}>{e.docRequired}</td>
                   <td style={{ fontSize: 10, color: '#2DD4BF', wordBreak: 'break-all' }}>{e.location}</td>
                 </tr>
               ))}
               {filtered.length === 0 && (
-                <tr><td colSpan={8} style={{ textAlign: 'center', padding: 32, color: 'rgba(255,255,255,0.30)' }}>No items match the current filters.</td></tr>
+                <tr><td colSpan={8} style={{ textAlign: 'center', padding: 32, color: 'var(--qg-text-4)' }}>No items match the current filters.</td></tr>
               )}
             </tbody>
           </table>

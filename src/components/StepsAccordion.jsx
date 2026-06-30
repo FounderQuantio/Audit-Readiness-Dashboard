@@ -1,17 +1,42 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import BulletList from './BulletList';
 
 export default function StepsAccordion({ steps }) {
   const [open, setOpen] = useState(null);
+  const refs = useRef({});
 
-  const toggle = (n) => setOpen(prev => (prev === n ? null : n));
+  const toggle = (n) => {
+    if (n === open) { setOpen(null); return; }
+
+    const el = refs.current[n];
+    let scrollTarget = null;
+
+    if (el && open && refs.current[open]) {
+      const prevEl = refs.current[open];
+      if (prevEl.getBoundingClientRect().top < el.getBoundingClientRect().top) {
+        const body = prevEl.querySelector('.step-body-inner');
+        const collapsingHeight = body ? body.offsetHeight : 0;
+        scrollTarget = window.scrollY + el.getBoundingClientRect().top - collapsingHeight;
+      }
+    }
+
+    setOpen(n);
+
+    requestAnimationFrame(() => {
+      if (scrollTarget !== null) {
+        window.scrollTo({ top: Math.max(0, scrollTarget), behavior: 'instant' });
+      } else if (el) {
+        el.scrollIntoView({ behavior: 'instant', block: 'start' });
+      }
+    });
+  };
 
   return (
     <div className="steps-list">
       {steps.map((step) => {
         const isOpen = open === step.n;
         return (
-          <div key={step.n} className={`step-item${isOpen ? ' open' : ''}`}>
+          <div key={step.n} ref={el => refs.current[step.n] = el} className={`step-item${isOpen ? ' open' : ''}`}>
             <button
               className="step-trigger"
               onClick={() => toggle(step.n)}

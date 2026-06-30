@@ -810,8 +810,9 @@ input, textarea, select, button {
   --qg-green-border:    rgba( 34,197, 94, 0.25);
   --qg-purple-bg:       rgba(167,139,250, 0.09);
   --qg-purple-border:   rgba(167,139,250, 0.25);
-  --qg-teal-bg:         rgba( 45,212,191, 0.09);
-  --qg-teal-border:     rgba( 45,212,191, 0.25);
+  --qg-teal:            #0F766E;
+  --qg-teal-bg:         rgba( 15,118,110, 0.09);
+  --qg-teal-border:     rgba( 15,118,110, 0.25);
 
   /* Shadows */
   --qg-shadow-sm:   0 1px 3px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.06);

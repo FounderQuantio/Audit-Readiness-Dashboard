@@ -6,6 +6,8 @@ import QuickRefAccordion from './components/QuickRefAccordion';
 import StepsAccordion from './components/StepsAccordion';
 import ThemeToggle from './components/ThemeToggle';
 import { useTheme } from './useTheme';
+import SiteHeader from './components/SiteHeader';
+import SiteFooter from './components/SiteFooter';
 
 const TOOL_ID  = 'exhibit_20_audit_readiness_dashboard';
 const API_BASE = 'https://niw-tools-api-production.up.railway.app';
@@ -45,6 +47,7 @@ export default function App() {
 
   return (
     <>
+      <SiteHeader />
       <div className="gov-banner">
         <span>🇺🇸</span>
         An official resource for federal grant financial management compliance
@@ -113,6 +116,7 @@ export default function App() {
       <footer className="site-footer">
         {meta.footer}
       </footer>
+      <SiteFooter />
     </>
   );
 }

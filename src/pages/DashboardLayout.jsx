@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import '../dashboard.css';
 import ThemeToggle from '../components/ThemeToggle';
 import { useTheme } from '../useTheme';
+import SiteHeader from '../components/SiteHeader';
+import SiteFooter from '../components/SiteFooter';
 import ExecSummary from './ExecSummary.jsx';
 import ComplianceRegister from './ComplianceRegister.jsx';
 import RiskMatrix from './RiskMatrix.jsx';
@@ -26,6 +28,7 @@ export default function DashboardLayout() {
 
   return (
     <div className="db-shell">
+      <SiteHeader />
       <div className="db-topbar">
         <div className="db-topbar-inner">
           <button className="db-logo" onClick={() => navigate('/')} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
@@ -55,6 +58,7 @@ export default function DashboardLayout() {
       <div className="db-content">
         <Page />
       </div>
+      <SiteFooter />
     </div>
   );
 }

@@ -66,11 +66,11 @@ export default function App() {
               <ThemeToggle />
               <a
                 className="download-btn"
-                href="/Audit Readiness Framework.docx"
-                download="Audit Readiness Framework.docx"
+                href="/Audit_Readiness_Dashboard_NIW_v2.xlsx"
+                download="Audit_Readiness_Dashboard_NIW_v2.xlsx"
                 onClick={handleDownload}
               >
-                ⬇ Download Full Dashboard (.docx)
+                ⬇ Download Full Dashboard (.xlsx)
               </a>
               {dlCount !== null && (
                 <span className="download-count">

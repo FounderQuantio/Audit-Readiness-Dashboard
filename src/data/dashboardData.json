@@ -168,6 +168,13 @@
       "area": "Program cluster requirements, special tests, high-risk program areas by agency",
       "sections": "Parts 3–6 (Compliance requirements); Appendix IV (Major programs); Program-specific clusters: HUD, DOT, HHS, DOE, USDA",
       "dhanasar": "PRONG 1: 2025 updates to program-specific audit requirements — demonstrates current U.S. regulatory knowledge"
+    },
+    {
+      "source": "OMB Crosswalk & FAQs 2024",
+      "count": 150,
+      "area": "Cross-referencing prior guidance to the 2024 Final Rule; FAQ clarifications resolving ambiguous 2 CFR Part 200 provisions",
+      "sections": "OMB Crosswalk & FAQs 2024 (CW-001–CW-150); represented in the Compliance Register via CW-001–CW-010 (Uniform Guidance Crosswalk domain)",
+      "dhanasar": "PRONG 1: Demonstrates command of the most current OMB interpretive guidance — critical for practitioners advising organizations through the 2024 Final Rule transition"
     }
   ],
   "domainCfr": [
@@ -188,7 +195,7 @@
     {
       "domain": "Pre-Award Requirements",
       "reqs": 34,
-      "area": "Internal Controls",
+      "area": "Pre-Award Requirements",
       "cfr": "§200.303; COSO Framework; GAO Green Book Principle 10",
       "dhanasar": "Prong 1 + 2"
     },
@@ -237,7 +244,7 @@
     {
       "domain": "Audit Requirements (Single Audit)",
       "reqs": 15,
-      "area": "Audit Preparation",
+      "area": "Audit Requirements",
       "cfr": "§200.501 (Single Audit); §200.334 (Record Retention); §200.509 (SEFA)",
       "dhanasar": "Prong 1 + 3"
     },

@@ -23,8 +23,8 @@ export const quickRef = [
     ],
     bullets: [
       { label: "User Guide:", text: "Orientation, navigation instructions, and step-by-step update procedures. Start here." },
-      { label: "Executive Summary:", text: "A one-page KPI scorecard showing overall audit readiness across all 297 tracked requirements — including completion percentage, high-risk item count, and compliance progress by domain. Three embedded charts visualize completion, risk distribution, and regulatory source coverage." },
-      { label: "Compliance Register:", text: "297 structured requirements individually listed, each with its federal rule citation, risk level, current status, and evidence location. Fully filterable by domain, risk level, and completion status." },
+      { label: "Executive Summary:", text: "A one-page KPI scorecard showing overall audit readiness across all 265 tracked requirements — including completion percentage, high-risk item count, and compliance progress by domain. Three embedded charts visualize completion, risk distribution, and regulatory source coverage." },
+      { label: "Compliance Register:", text: "265 structured requirements individually listed, each with its federal rule citation, risk level, current status, and evidence location. Fully filterable by domain, risk level, and completion status." },
       { label: "Risk Priority Matrix:", text: "A high/medium/low risk ranking of every compliance gap — calibrated to PRAC FY2023 federal audit failure data so the most dangerous gaps are addressed first." },
       { label: "Regulatory Coverage:", text: "693 requirements mapped to their source across all three OMB regulatory layers: 2 CFR Part 200 (348 reqs), the 2025 OMB Compliance Supplement (195 reqs), and OMB Crosswalk & FAQs 2024 (150 reqs)." },
       { label: "Evidence Tracker:", text: "An action register of 193 pending evidence items — each linked to a GitHub repository folder where supporting documents should be uploaded." },
@@ -110,9 +110,9 @@ export const quickRef = [
     detail:
       "No installation required. The dashboard is a single Excel workbook available for free download from a public GitHub repository. Your finance team, compliance officer, or external auditor can be working through it within minutes of downloading. The workflow follows five stages:",
     phases: [
-      { phase: "Phase 1", title: "Download & Open", desc: "Get the workbook from github.com/bilalgovernance/audit-readiness-framework and save it to your shared drive." },
+      { phase: "Phase 1", title: "Download & Open", desc: "Get the workbook from www.quantioglobal.net (source: github.com/FounderQuantio/Audit-Readiness-Dashboard) and save it to your shared drive." },
       { phase: "Phase 2", title: "Configure", desc: "Add your organization name and reporting date in the Executive Summary tab — all charts and KPIs populate automatically." },
-      { phase: "Phase 3", title: "Track Compliance", desc: "Work through the Compliance Register, updating status and evidence fields for each of the 297 requirements." },
+      { phase: "Phase 3", title: "Track Compliance", desc: "Work through the Compliance Register, updating status and evidence fields for each of the 265 requirements." },
       { phase: "Phase 4", title: "Prioritize Gaps", desc: "Use the Risk Priority Matrix to address high-risk incomplete items first, guided by PRAC FY2023 audit failure data." },
       { phase: "Phase 5", title: "Export & Submit", desc: "Print or export any tab for external audit submission or USCIS NIW petition — all tabs are pre-formatted for Landscape A4." },
     ],
@@ -122,11 +122,11 @@ export const quickRef = [
     label: "Key result",
     icon: "📊",
     short:
-      "693 requirements · 13 compliance domains · 297 tracked items · 193 evidence actions · Full OMB 2 CFR Part 200 and PRAC FY2023 alignment.",
+      "693 requirements · 13 compliance domains · 265 tracked items · 193 evidence actions · Full OMB 2 CFR Part 200 and PRAC FY2023 alignment.",
     stats: [
       { value: "693", label: "Requirements Mapped", desc: "Across all three OMB regulatory layers — 2 CFR Part 200, 2025 Compliance Supplement, and 2024 Crosswalk" },
       { value: "13", label: "Compliance Domains", desc: "From Governance & Oversight to Single Audit Preparation and Program Closeout" },
-      { value: "297", label: "Tracked Requirements", desc: "Individually listed in the structured Compliance Register with risk ratings and evidence fields" },
+      { value: "265", label: "Tracked Requirements", desc: "Individually listed in the structured Compliance Register with risk ratings and evidence fields" },
       { value: "193", label: "Evidence Actions", desc: "Pending evidence items catalogued in the Evidence Tracker, sorted by risk level" },
     ],
   },
@@ -137,7 +137,7 @@ export const steps = [
     n: 1,
     title: "Download and Open the Workbook",
     intro:
-      "Go to github.com/bilalgovernance/audit-readiness-framework and download the Excel file (Audit_Readiness_Dashboard_NIW_v2.xlsx). Save it to your organization's shared drive or compliance folder. Open it in Microsoft Excel — all formulas, filters, and colour-coding work natively. Google Sheets users: upload via File → Import. No macros or add-ins are required.",
+      "Go to www.quantioglobal.net (source: github.com/FounderQuantio/Audit-Readiness-Dashboard) and download the Excel file (Audit_Readiness_Dashboard_NIW_v2.xlsx). Save it to your organization's shared drive or compliance folder. Open it in Microsoft Excel — all formulas, filters, and colour-coding work natively. Google Sheets users: upload via File → Import. No macros or add-ins are required.",
     bullets: [
       'If prompted with a security warning about external content or macros, click "Enable Editing." The workbook does not contain macros — this is a standard Excel prompt for downloaded files.',
       'Immediately save a copy with your organization\'s name in the filename (e.g., "CityOfSpringfield_AuditReadiness_2026.xlsx") so you can track your own progress without modifying the original template.',
@@ -158,11 +158,11 @@ export const steps = [
     intro:
       'Navigate to Tab 1 (Executive Summary). In cell B2, replace the placeholder text "[YOUR ORGANISATION]" with your organization\'s name. Update the reporting date in cell H3. This information appears in the header across all printed tabs.',
     bullets: [
-      "Total Requirements: 297 requirements are tracked in the structured register across all 13 compliance domains.",
+      "Total Requirements: 265 requirements are tracked in the structured register across all 13 compliance domains.",
       "Completed: Requirements where evidence has been collected and reviewed — shown as a percentage of total.",
       "In Progress: Requirements where work has begun but evidence collection is not yet complete.",
       "Not Started: Requirements with no action taken — these are your compliance gaps.",
-      "High-Risk Items: 90 requirements rated High risk — these are the gaps most likely to produce audit findings and should be addressed first.",
+      "High-Risk Items: 61 requirements rated High risk — these are the gaps most likely to produce audit findings and should be addressed first.",
     ],
     closing:
       "Three embedded charts show completion by domain, risk distribution, and coverage by regulatory source. These charts update automatically as you enter data in the Compliance Register.",
@@ -171,7 +171,7 @@ export const steps = [
     n: 4,
     title: "Work Through the Compliance Register (Tab 2)",
     intro:
-      "The Compliance Register is the core working tab. It lists all 297 structured requirements, each with its unique ID, compliance domain, plain-English requirement statement, federal rule citation, risk level, current status, and evidence status. This is where you record your organization's compliance work. For each requirement, update four fields:",
+      "The Compliance Register is the core working tab. It lists all 265 structured requirements, each with its unique ID, compliance domain, plain-English requirement statement, federal rule citation, risk level, current status, and evidence status. This is where you record your organization's compliance work. For each requirement, update four fields:",
     bullets: [
       { label: 'Status (Column H):', text: 'Set to "Not Started," "In Progress," "Completed," or "Under Review." The cell colour updates automatically. All KPI totals on the Executive Summary recalculate via built-in formulas — you do not need to update the summary manually.' },
       { label: "Risk Level (Column I):", text: 'The default risk rating is pre-set based on PRAC audit data. If your specific program or agency has a different risk profile, you may adjust to "High," "Medium," or "Low." The Risk Priority Matrix re-sorts automatically.' },
@@ -187,9 +187,9 @@ export const steps = [
     intro:
       'Navigate to the Risk Priority Matrix to see your compliance gaps ranked by risk level across all 13 domains. This tab answers the question: "Given everything that is incomplete, what should we fix first?"',
     bullets: [
-      "90 High-risk items require immediate remediation — these are the requirements most likely to produce a formal audit finding if left unaddressed.",
+      "61 High-risk items require immediate remediation — these are the requirements most likely to produce a formal audit finding if left unaddressed.",
       "Medium-risk items should be addressed within 30 to 60 days. Low-risk items can be scheduled within 90 days.",
-      "The two domains with the highest concentration of high-risk incomplete items are Cost Principles & Allowability (14 high-risk gaps) and Financial Management (12 high-risk gaps) — start there.",
+      "The two domains with the highest concentration of high-risk incomplete items are Cost Principles & Allowability (13 high-risk gaps) and Pre-Award Requirements (11 high-risk gaps) — start there.",
     ],
     closing:
       'The Risk Priority Matrix also identifies the "Evidence Gap" count per domain — the number of requirements where you have marked a status of Completed or In Progress but have not yet attached evidence. Evidence gaps are a common cause of audit findings even when the underlying control exists.',

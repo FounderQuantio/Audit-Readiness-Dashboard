@@ -4,7 +4,12 @@ import data from '../data/dashboardData.json';
 import { useTheme } from '../useTheme';
 import { getChartTheme, getSemanticColors } from '../utils/chartTheme';
 
-const { evidence: rawEvidence } = data;
+const { evidence: rawEvidence, register, execSummary } = data;
+
+const evidPending = register.filter(r => r.evidence === 'No').length;
+const evidCollected = register.filter(r => r.evidence === 'Yes').length;
+const evidHighPending = register.filter(r => r.risk === 'High' && r.evidence === 'No').length;
+const evidCollectedPct = execSummary.total ? Math.round((evidCollected / execSummary.total) * 100) : 0;
 
 const DOMAIN_MAP = {
   'Governance & Oversig':       'Governance & Oversight',
@@ -91,7 +96,7 @@ export default function EvidenceTracker() {
       <div className="db-page-header">
         <p className="db-page-eyebrow">⑤ Evidence Tracker</p>
         <h2 className="db-page-title">Pending Evidence — Action Register</h2>
-        <p className="db-page-desc">193 of 297 requirements still require evidence collection. Sorted High risk first. Upload documents to GitHub then update the Compliance Register.</p>
+        <p className="db-page-desc">{evidPending} of {execSummary.total} requirements still require evidence collection. Sorted High risk first. Upload documents to GitHub then update the Compliance Register.</p>
       </div>
 
       {/* Completion rate banner */}
@@ -99,31 +104,31 @@ export default function EvidenceTracker() {
         <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--qg-gold)', whiteSpace: 'nowrap' }}>Completion Rate</span>
         <div style={{ flex: 1, minWidth: 160 }}>
           <div className="progress-bar" style={{ height: 8 }}>
-            <div className="progress-bar-fill medium" style={{ width: '41%' }} />
+            <div className="progress-bar-fill medium" style={{ width: `${evidCollectedPct}%` }} />
           </div>
         </div>
-        <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--qg-text-1)', whiteSpace: 'nowrap' }}>41% &nbsp;<span style={{ fontWeight: 400, color: 'var(--qg-text-3)', fontSize: 12 }}>122 of 297 requirements have evidence collected</span></span>
+        <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--qg-text-1)', whiteSpace: 'nowrap' }}>{evidCollectedPct}% &nbsp;<span style={{ fontWeight: 400, color: 'var(--qg-text-3)', fontSize: 12 }}>{evidCollected} of {execSummary.total} requirements have evidence collected</span></span>
       </div>
 
       {/* KPIs */}
       <div className="kpi-grid" style={{ marginBottom: 24 }}>
         <div className="kpi-card highlight">
-          <span className="kpi-value">297</span>
+          <span className="kpi-value">{execSummary.total}</span>
           <span className="kpi-label">Total Requirements</span>
           <span className="kpi-sub">Full register scope</span>
         </div>
         <div className="kpi-card danger">
-          <span className="kpi-value">193</span>
+          <span className="kpi-value">{evidPending}</span>
           <span className="kpi-label">Evidence Pending</span>
-          <span className="kpi-sub">65% still to collect</span>
+          <span className="kpi-sub">{100 - evidCollectedPct}% still to collect</span>
         </div>
         <div className="kpi-card success">
-          <span className="kpi-value">122</span>
+          <span className="kpi-value">{evidCollected}</span>
           <span className="kpi-label">Evidence Collected</span>
-          <span className="kpi-sub">41% completion rate</span>
+          <span className="kpi-sub">{evidCollectedPct}% completion rate</span>
         </div>
         <div className="kpi-card danger">
-          <span className="kpi-value">90</span>
+          <span className="kpi-value">{evidHighPending}</span>
           <span className="kpi-label">High Risk Pending</span>
           <span className="kpi-sub">Address immediately</span>
         </div>

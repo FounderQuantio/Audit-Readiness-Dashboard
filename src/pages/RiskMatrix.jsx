@@ -4,7 +4,7 @@ import data from '../data/dashboardData.json';
 import { useTheme } from '../useTheme';
 import { getChartTheme, getSemanticColors } from '../utils/chartTheme';
 
-const { riskDomains } = data;
+const { riskDomains, register, execSummary } = data;
 
 const GOLD   = '#C9A84C';
 // teal is now derived per-theme inside the component (TEAL_C / PURPLE alias)
@@ -12,6 +12,15 @@ const GOLD   = '#C9A84C';
 const plotConfig = { displayModeBar: false, responsive: true };
 
 const chartSorted = riskDomains.slice().sort((a, b) => b.highRisk - a.highRisk);
+
+const totalReqs = execSummary.total;
+const completedReqs = execSummary.completed;
+const completionPct = totalReqs ? Math.round((completedReqs / totalReqs) * 100) : 0;
+const riskCounts = register.reduce((acc, r) => {
+  acc[r.risk] = (acc[r.risk] || 0) + 1;
+  return acc;
+}, {});
+const totalEvidGap = riskDomains.reduce((sum, d) => sum + d.evidGap, 0);
 
 const COLS = [
   { label: 'Compliance Domain', key: 'domain' },
@@ -75,31 +84,31 @@ export default function RiskMatrix() {
         <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--qg-gold)', whiteSpace: 'nowrap' }}>Overall Completion</span>
         <div style={{ flex: 1, minWidth: 160 }}>
           <div className="progress-bar" style={{ height: 8 }}>
-            <div className="progress-bar-fill medium" style={{ width: '41%' }} />
+            <div className="progress-bar-fill medium" style={{ width: `${completionPct}%` }} />
           </div>
         </div>
-        <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--qg-text-1)', whiteSpace: 'nowrap' }}>41% &nbsp;<span style={{ fontWeight: 400, color: 'var(--qg-text-3)', fontSize: 12 }}>122 of 297 requirements completed</span></span>
+        <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--qg-text-1)', whiteSpace: 'nowrap' }}>{completionPct}% &nbsp;<span style={{ fontWeight: 400, color: 'var(--qg-text-3)', fontSize: 12 }}>{completedReqs} of {totalReqs} requirements completed</span></span>
       </div>
 
       {/* Summary KPIs */}
       <div className="kpi-grid" style={{ marginBottom: 24 }}>
         <div className="kpi-card danger">
-          <span className="kpi-value">90</span>
+          <span className="kpi-value">{riskCounts.High || 0}</span>
           <span className="kpi-label">High Risk Items</span>
           <span className="kpi-sub">Immediate remediation</span>
         </div>
         <div className="kpi-card warning">
-          <span className="kpi-value">135</span>
+          <span className="kpi-value">{riskCounts.Medium || 0}</span>
           <span className="kpi-label">Medium Risk Items</span>
           <span className="kpi-sub">Action within 30–60 days</span>
         </div>
         <div className="kpi-card success">
-          <span className="kpi-value">72</span>
+          <span className="kpi-value">{riskCounts.Low || 0}</span>
           <span className="kpi-label">Low Risk Items</span>
           <span className="kpi-sub">Schedule within 90 days</span>
         </div>
         <div className="kpi-card highlight">
-          <span className="kpi-value">125</span>
+          <span className="kpi-value">{totalEvidGap}</span>
           <span className="kpi-label">Evidence Gaps</span>
           <span className="kpi-sub">Completed/In-Progress, no evidence yet</span>
         </div>

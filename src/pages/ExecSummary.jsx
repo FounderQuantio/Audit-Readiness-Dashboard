@@ -3,7 +3,7 @@ import data from '../data/dashboardData.json';
 import { useTheme } from '../useTheme';
 import { getChartTheme, getSemanticColors } from '../utils/chartTheme';
 
-const { execSummary: kpi, riskDomains } = data;
+const { execSummary: kpi, riskDomains, register } = data;
 
 const NAVY = '#C9A84C';
 const GOLD = '#C9A84C';
@@ -11,6 +11,12 @@ const GOLD = '#C9A84C';
 const domains = riskDomains
   .slice()
   .sort((a, b) => b.completionPct - a.completionPct);
+
+const pct = (n) => kpi.total ? Math.round((n / kpi.total) * 100) : 0;
+const riskCounts = register.reduce((acc, r) => {
+  acc[r.risk] = (acc[r.risk] || 0) + 1;
+  return acc;
+}, {});
 
 const plotConfig = { displayModeBar: false, responsive: true };
 
@@ -33,22 +39,27 @@ export default function ExecSummary() {
         <div className="kpi-card highlight">
           <span className="kpi-value">{kpi.total}</span>
           <span className="kpi-label">Total Requirements</span>
-          <span className="kpi-sub">297 items tracked</span>
+          <span className="kpi-sub">{kpi.total} items tracked</span>
         </div>
         <div className="kpi-card success">
           <span className="kpi-value">{kpi.completed}</span>
           <span className="kpi-label">Completed ✓</span>
-          <span className="kpi-sub">41% of total</span>
+          <span className="kpi-sub">{pct(kpi.completed)}% of total</span>
         </div>
         <div className="kpi-card info">
           <span className="kpi-value">{kpi.inProgress}</span>
           <span className="kpi-label">In Progress ◑</span>
-          <span className="kpi-sub">29% of total</span>
+          <span className="kpi-sub">{pct(kpi.inProgress)}% of total</span>
         </div>
         <div className="kpi-card warning">
           <span className="kpi-value">{kpi.notStarted}</span>
           <span className="kpi-label">Not Started ○</span>
-          <span className="kpi-sub">30% of total</span>
+          <span className="kpi-sub">{pct(kpi.notStarted)}% of total</span>
+        </div>
+        <div className="kpi-card">
+          <span className="kpi-value">{kpi.underReview}</span>
+          <span className="kpi-label">Under Review ⟳</span>
+          <span className="kpi-sub">{pct(kpi.underReview)}% of total</span>
         </div>
         <div className="kpi-card danger">
           <span className="kpi-value">{kpi.highRisk}</span>
@@ -99,7 +110,7 @@ export default function ExecSummary() {
               type: 'pie',
               hole: 0.55,
               labels: ['High Risk', 'Medium Risk', 'Low Risk'],
-              values: [90, 135, 72],
+              values: [riskCounts.High || 0, riskCounts.Medium || 0, riskCounts.Low || 0],
               marker: { colors: [DANGER, GOLD, SUCCESS] },
               textinfo: 'label+value',
               hovertemplate: '<b>%{label}</b><br>%{value} requirements<extra></extra>',
@@ -107,7 +118,7 @@ export default function ExecSummary() {
             layout={{
               paper_bgcolor: 'transparent', plot_bgcolor: 'transparent',
               font: ct.font, showlegend: false, height: 300,
-              annotations: [{ text: '297<br>Total', x: 0.5, y: 0.5, font: { size: 14, color: ct.annotationColor, family: 'Inter' }, showarrow: false }],
+              annotations: [{ text: `${kpi.total}<br>Total`, x: 0.5, y: 0.5, font: { size: 14, color: ct.annotationColor, family: 'Inter' }, showarrow: false }],
             }}
             config={plotConfig}
             style={{ width: '100%' }}

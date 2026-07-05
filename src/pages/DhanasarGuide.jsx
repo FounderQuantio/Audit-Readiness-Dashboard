@@ -15,7 +15,7 @@ for (const item of dhanasar) {
 }
 
 const PRONG_COLORS = ['#EEF2FA', '#EEF2FA', '#EEF2FA'];
-const PRONG_BORDERS = ['#2563EB', '#0D9488', '#7C3AED'];
+const PRONG_BORDERS = ['#5B7FA6', '#0D9488', '#7C3AED'];
 
 export default function DhanasarGuide() {
   return (
@@ -43,7 +43,7 @@ export default function DhanasarGuide() {
         <div className="dhanasar-prong" key={pi}>
           <div
             className="dhanasar-prong-header"
-            style={{ background: PRONG_COLORS[pi], borderTop: `3px solid ${PRONG_BORDERS[pi] || '#2563EB'}`, color: PRONG_BORDERS[pi] || '#2563EB' }}
+            style={{ background: PRONG_COLORS[pi], borderTop: `3px solid ${PRONG_BORDERS[pi] || '#5B7FA6'}`, color: PRONG_BORDERS[pi] || '#5B7FA6' }}
           >
             {prong.heading}
           </div>
@@ -60,11 +60,11 @@ export default function DhanasarGuide() {
               <tbody>
                 {prong.rows.map((row, ri) => (
                   <tr key={ri}>
-                    <td style={{ fontWeight: 700, fontSize: 12, color: '#2563EB', verticalAlign: 'top' }}>{row.element}</td>
+                    <td style={{ fontWeight: 700, fontSize: 12, color: '#5B7FA6', verticalAlign: 'top' }}>{row.element}</td>
                     <td style={{ fontSize: 12, lineHeight: 1.6, verticalAlign: 'top', color: 'rgba(15,23,42,0.78)' }}>{row.argument}</td>
                     <td style={{ fontSize: 11, color: 'rgba(15,23,42,0.50)', verticalAlign: 'top', lineHeight: 1.5 }}>{row.sources}</td>
                     <td style={{ fontSize: 11, verticalAlign: 'top', lineHeight: 1.5 }}>
-                      <span style={{ color: row.action?.startsWith('✓') ? '#22C55E' : row.action?.startsWith('⚑') ? '#2563EB' : 'rgba(15,23,42,0.50)', fontWeight: row.action?.startsWith('✓') ? 600 : 400 }}>
+                      <span style={{ color: row.action?.startsWith('✓') ? '#22C55E' : row.action?.startsWith('⚑') ? '#5B7FA6' : 'rgba(15,23,42,0.50)', fontWeight: row.action?.startsWith('✓') ? 600 : 400 }}>
                         {row.action}
                       </span>
                     </td>

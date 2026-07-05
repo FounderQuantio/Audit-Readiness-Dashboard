@@ -6,7 +6,7 @@ import { getChartTheme, getSemanticColors } from '../utils/chartTheme';
 
 const { riskDomains, register, execSummary } = data;
 
-const GOLD   = '#2563EB';
+const GOLD   = '#5B7FA6';
 // teal is now derived per-theme inside the component (TEAL_C / PURPLE alias)
 
 const plotConfig = { displayModeBar: false, responsive: true };

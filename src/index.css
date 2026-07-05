@@ -270,7 +270,7 @@ section { margin-top: 40px; }
   transition: var(--qg-ease);
   flex-shrink: 0;
 }
-.download-btn:hover { background: var(--qg-gold-light); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(37,99,235,0.35); }
+.download-btn:hover { background: var(--qg-gold-light); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(91,127,166,0.35); }
 .download-btn:active { transform: translateY(0); }
 .download-wrap { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .download-count { font-size: 12px; color: var(--qg-text-3); letter-spacing: .03em; }

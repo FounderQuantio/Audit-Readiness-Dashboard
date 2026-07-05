@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export function useTheme() {
   const [theme, setTheme] = useState(
-    () => localStorage.getItem('qg-theme') || 'dark'
+    () => localStorage.getItem('qg-theme') || 'light'
   );
 
   useEffect(() => {
@@ -11,5 +11,5 @@ export function useTheme() {
   }, [theme]);
 
   const toggle = () => setTheme(t => (t === 'dark' ? 'light' : 'dark'));
-  return { theme, toggle, isDark: theme === 'dark' };
+  return { theme, toggle, isDark: false };
 }

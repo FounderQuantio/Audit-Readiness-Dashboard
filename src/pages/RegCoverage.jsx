@@ -5,9 +5,9 @@ import { getChartTheme } from '../utils/chartTheme';
 
 const { regSources, domainCfr } = data;
 
-const NAVY = '#ABABAB';
+const NAVY = '#2563EB';
 const TEAL = '#2DD4BF';
-const GOLD = '#ABABAB';
+const GOLD = '#2563EB';
 
 const plotConfig = { displayModeBar: false, responsive: true };
 

@@ -109,7 +109,7 @@ export default function ComplianceRegister() {
               onClick={() => setEditMode(e => !e)}
               style={{
                 background: editMode ? 'var(--qg-gold)' : 'var(--qg-gold-tint-2)',
-                color: editMode ? '#1A1A1A' : 'var(--qg-gold)',
+                color: editMode ? '#FFFFFF' : 'var(--qg-gold)',
                 border: '1px solid var(--qg-gold-border)',
                 borderRadius: 'var(--qg-radius-md)',
                 padding: '4px 12px',

@@ -91,7 +91,7 @@ section { margin-top: 40px; }
 .try-tool-text span { color: var(--qg-text-3); font-size: 12.5px; }
 .try-tool-btn {
   background: var(--qg-gold);
-  color: #1A1A1A;
+  color: #FFFFFF;
   font-family: var(--qg-font);
   font-size: 13px; font-weight: 700;
   letter-spacing: .04em;
@@ -180,7 +180,7 @@ section { margin-top: 40px; }
 .cost-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13.5px; }
 .cost-table th { background: var(--qg-surface-2); color: var(--qg-gold); padding: 10px 14px; text-align: left; font-weight: 700; border-bottom: 1px solid var(--qg-gold-border); }
 .cost-table td { padding: 10px 14px; border-bottom: 1px solid var(--qg-border); color: var(--qg-text-2); }
-.cost-table tr:nth-child(odd) td { background: rgba(255,255,255,0.02); }
+.cost-table tr:nth-child(odd) td { background: rgba(15,23,42,0.02); }
 .cost-table tr:last-child td { background: var(--qg-green-bg); font-weight: 700; color: var(--qg-green); border-bottom: 2px solid var(--qg-green-border); }
 
 /* PHASE LIST */
@@ -258,7 +258,7 @@ section { margin-top: 40px; }
   align-items: center;
   gap: 7px;
   background: var(--qg-gold);
-  color: #1A1A1A;
+  color: #FFFFFF;
   font-family: var(--qg-font);
   font-size: 12.5px;
   font-weight: 700;
@@ -270,7 +270,7 @@ section { margin-top: 40px; }
   transition: var(--qg-ease);
   flex-shrink: 0;
 }
-.download-btn:hover { background: var(--qg-gold-light); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(201,168,76,0.35); }
+.download-btn:hover { background: var(--qg-gold-light); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(37,99,235,0.35); }
 .download-btn:active { transform: translateY(0); }
 .download-wrap { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .download-count { font-size: 12px; color: var(--qg-text-3); letter-spacing: .03em; }

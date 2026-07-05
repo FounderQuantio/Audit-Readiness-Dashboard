@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../dashboard.css';
-import ThemeToggle from '../components/ThemeToggle';
 import { useTheme } from '../useTheme';
 import SiteHeader from '../components/SiteHeader';
 import SiteFooter from '../components/SiteFooter';
@@ -49,9 +48,6 @@ export default function DashboardLayout() {
                 {t.label}
               </button>
             ))}
-          </div>
-          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', paddingLeft: 12 }}>
-            <ThemeToggle />
           </div>
         </div>
       </div>

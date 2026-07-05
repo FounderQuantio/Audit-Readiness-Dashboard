@@ -4,7 +4,6 @@ import './index.css';
 import { meta, quickRef, steps } from './data/content';
 import QuickRefAccordion from './components/QuickRefAccordion';
 import StepsAccordion from './components/StepsAccordion';
-import ThemeToggle from './components/ThemeToggle';
 import { useTheme } from './useTheme';
 import SiteHeader from './components/SiteHeader';
 import SiteFooter from './components/SiteFooter';
@@ -63,7 +62,6 @@ export default function App() {
           <div className="header-divider" />
           <div className="header-bottom-row">
             <div className="download-wrap">
-              <ThemeToggle />
               <a
                 className="download-btn"
                 href="/Audit_Readiness_Dashboard_NIW_v2.xlsx"

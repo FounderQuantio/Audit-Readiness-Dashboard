@@ -47,11 +47,6 @@ export default function App() {
   return (
     <>
       <SiteHeader />
-      <div className="gov-banner">
-        <span>🇺🇸</span>
-        An official resource for federal grant financial management compliance
-        &nbsp;·&nbsp; OMB 2 CFR Part 200 &nbsp;·&nbsp; PRAC FY2023
-      </div>
 
       <header className="site-header">
         <div className="header-inner">

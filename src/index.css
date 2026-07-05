@@ -2,19 +2,6 @@
 
 .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px 60px; }
 
-/* GOV BANNER */
-.gov-banner {
-  background: var(--qg-sidebar);
-  color: var(--qg-text-3);
-  font-size: 12px;
-  letter-spacing: .04em;
-  padding: 6px 24px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-bottom: 1px solid var(--qg-gold-border);
-}
-
 /* SITE HEADER */
 .site-header {
   background: var(--qg-surface);

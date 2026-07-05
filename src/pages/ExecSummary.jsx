@@ -5,8 +5,8 @@ import { getChartTheme, getSemanticColors } from '../utils/chartTheme';
 
 const { execSummary: kpi, riskDomains, register } = data;
 
-const NAVY = '#C9A84C';
-const GOLD = '#C9A84C';
+const NAVY = '#ABABAB';
+const GOLD = '#ABABAB';
 
 const domains = riskDomains
   .slice()

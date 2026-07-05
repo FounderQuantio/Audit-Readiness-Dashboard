@@ -15,7 +15,7 @@ for (const item of dhanasar) {
 }
 
 const PRONG_COLORS = ['#1C1C1C', '#1C1C1C', '#1C1C1C'];
-const PRONG_BORDERS = ['#C9A84C', '#2DD4BF', '#A78BFA'];
+const PRONG_BORDERS = ['#ABABAB', '#2DD4BF', '#A78BFA'];
 
 export default function DhanasarGuide() {
   return (
@@ -43,7 +43,7 @@ export default function DhanasarGuide() {
         <div className="dhanasar-prong" key={pi}>
           <div
             className="dhanasar-prong-header"
-            style={{ background: PRONG_COLORS[pi], borderTop: `3px solid ${PRONG_BORDERS[pi] || '#C9A84C'}`, color: PRONG_BORDERS[pi] || '#C9A84C' }}
+            style={{ background: PRONG_COLORS[pi], borderTop: `3px solid ${PRONG_BORDERS[pi] || '#ABABAB'}`, color: PRONG_BORDERS[pi] || '#ABABAB' }}
           >
             {prong.heading}
           </div>
@@ -60,11 +60,11 @@ export default function DhanasarGuide() {
               <tbody>
                 {prong.rows.map((row, ri) => (
                   <tr key={ri}>
-                    <td style={{ fontWeight: 700, fontSize: 12, color: '#C9A84C', verticalAlign: 'top' }}>{row.element}</td>
+                    <td style={{ fontWeight: 700, fontSize: 12, color: '#ABABAB', verticalAlign: 'top' }}>{row.element}</td>
                     <td style={{ fontSize: 12, lineHeight: 1.6, verticalAlign: 'top', color: 'rgba(255,255,255,0.85)' }}>{row.argument}</td>
                     <td style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)', verticalAlign: 'top', lineHeight: 1.5 }}>{row.sources}</td>
                     <td style={{ fontSize: 11, verticalAlign: 'top', lineHeight: 1.5 }}>
-                      <span style={{ color: row.action?.startsWith('✓') ? '#22C55E' : row.action?.startsWith('⚑') ? '#C9A84C' : 'rgba(255,255,255,0.45)', fontWeight: row.action?.startsWith('✓') ? 600 : 400 }}>
+                      <span style={{ color: row.action?.startsWith('✓') ? '#22C55E' : row.action?.startsWith('⚑') ? '#ABABAB' : 'rgba(255,255,255,0.45)', fontWeight: row.action?.startsWith('✓') ? 600 : 400 }}>
                         {row.action}
                       </span>
                     </td>

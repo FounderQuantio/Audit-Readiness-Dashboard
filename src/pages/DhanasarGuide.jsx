@@ -14,8 +14,8 @@ for (const item of dhanasar) {
   }
 }
 
-const PRONG_COLORS = ['#EEF2FA', '#EEF2FA', '#EEF2FA'];
-const PRONG_BORDERS = ['#5B7FA6', '#0D9488', '#7C3AED'];
+const PRONG_COLORS = ['#E8E2D8', '#E8E2D8', '#E8E2D8'];
+const PRONG_BORDERS = ['#6495ED', '#0D9488', '#7C3AED'];
 
 export default function DhanasarGuide() {
   return (
@@ -32,9 +32,9 @@ export default function DhanasarGuide() {
       {/* Prong overview cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, marginBottom: 28 }}>
         {['Prong 1 — Substantial Merit & National Importance', 'Prong 2 — Petitioner Well Positioned to Advance', 'Prong 3 — Waiver of Job Offer is Beneficial to U.S.'].map((p, i) => (
-          <div key={i} style={{ background: PRONG_COLORS[i], border: `1px solid ${PRONG_BORDERS[i]}`, borderTop: `3px solid ${PRONG_BORDERS[i]}`, borderRadius: 12, padding: '18px 20px', color: '#0F172A' }}>
+          <div key={i} style={{ background: PRONG_COLORS[i], border: `1px solid ${PRONG_BORDERS[i]}`, borderTop: `3px solid ${PRONG_BORDERS[i]}`, borderRadius: 12, padding: '18px 20px', color: '#212427' }}>
             <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: PRONG_BORDERS[i], marginBottom: 6 }}>Dhanasar</div>
-            <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, fontWeight: 700, lineHeight: 1.4, color: 'rgba(15,23,42,0.78)' }}>{p}</div>
+            <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, fontWeight: 700, lineHeight: 1.4, color: 'rgba(33,36,39,0.78)' }}>{p}</div>
           </div>
         ))}
       </div>
@@ -43,7 +43,7 @@ export default function DhanasarGuide() {
         <div className="dhanasar-prong" key={pi}>
           <div
             className="dhanasar-prong-header"
-            style={{ background: PRONG_COLORS[pi], borderTop: `3px solid ${PRONG_BORDERS[pi] || '#5B7FA6'}`, color: PRONG_BORDERS[pi] || '#5B7FA6' }}
+            style={{ background: PRONG_COLORS[pi], borderTop: `3px solid ${PRONG_BORDERS[pi] || '#6495ED'}`, color: PRONG_BORDERS[pi] || '#6495ED' }}
           >
             {prong.heading}
           </div>
@@ -60,18 +60,18 @@ export default function DhanasarGuide() {
               <tbody>
                 {prong.rows.map((row, ri) => (
                   <tr key={ri}>
-                    <td style={{ fontWeight: 700, fontSize: 12, color: '#5B7FA6', verticalAlign: 'top' }}>{row.element}</td>
-                    <td style={{ fontSize: 12, lineHeight: 1.6, verticalAlign: 'top', color: 'rgba(15,23,42,0.78)' }}>{row.argument}</td>
-                    <td style={{ fontSize: 11, color: 'rgba(15,23,42,0.50)', verticalAlign: 'top', lineHeight: 1.5 }}>{row.sources}</td>
+                    <td style={{ fontWeight: 700, fontSize: 12, color: '#6495ED', verticalAlign: 'top' }}>{row.element}</td>
+                    <td style={{ fontSize: 12, lineHeight: 1.6, verticalAlign: 'top', color: 'rgba(33,36,39,0.78)' }}>{row.argument}</td>
+                    <td style={{ fontSize: 11, color: 'rgba(33,36,39,0.50)', verticalAlign: 'top', lineHeight: 1.5 }}>{row.sources}</td>
                     <td style={{ fontSize: 11, verticalAlign: 'top', lineHeight: 1.5 }}>
-                      <span style={{ color: row.action?.startsWith('✓') ? '#22C55E' : row.action?.startsWith('⚑') ? '#5B7FA6' : 'rgba(15,23,42,0.50)', fontWeight: row.action?.startsWith('✓') ? 600 : 400 }}>
+                      <span style={{ color: row.action?.startsWith('✓') ? '#22C55E' : row.action?.startsWith('⚑') ? '#6495ED' : 'rgba(33,36,39,0.50)', fontWeight: row.action?.startsWith('✓') ? 600 : 400 }}>
                         {row.action}
                       </span>
                     </td>
                   </tr>
                 ))}
                 {prong.rows.length === 0 && (
-                  <tr><td colSpan={4} style={{ textAlign: 'center', padding: 24, color: 'rgba(15,23,42,0.32)', fontSize: 12 }}>No items in this section.</td></tr>
+                  <tr><td colSpan={4} style={{ textAlign: 'center', padding: 24, color: 'rgba(33,36,39,0.32)', fontSize: 12 }}>No items in this section.</td></tr>
                 )}
               </tbody>
             </table>

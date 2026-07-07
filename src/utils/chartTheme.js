@@ -15,7 +15,7 @@ export function getSemanticColors(isDark) {
     warn:    isDark ? '#C97830' : '#EA580C',
     success: isDark ? '#4EA878' : '#16A34A',
     teal:    isDark ? '#3ECFBE' : '#0F766E',
-    gold:    '#5B7FA6',
+    gold:    '#6495ED',
     purple:  isDark ? '#3ECFBE' : '#0F766E',
   };
 }

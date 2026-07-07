@@ -36,7 +36,7 @@
   border-bottom: 2px solid transparent;
   transition: var(--qg-ease);
 }
-.db-tab:hover { color: var(--qg-text-1); background: rgba(15,23,42,0.04); }
+.db-tab:hover { color: var(--qg-text-1); background: rgba(33,36,39,0.04); }
 .db-tab.active { color: var(--qg-gold); border-bottom-color: var(--qg-gold); }
 .db-tab-num { font-size: 10px; opacity: .6; }
 
@@ -151,8 +151,8 @@
   padding: 9px 14px; border-bottom: 1px solid var(--qg-border);
   color: var(--qg-text-2); vertical-align: top; line-height: 1.5;
 }
-.db-table tbody tr:nth-child(even) td { background: rgba(15,23,42,0.018); }
-.db-table tbody tr:hover td { background: rgba(15,23,42,0.04); }
+.db-table tbody tr:nth-child(even) td { background: rgba(33,36,39,0.018); }
+.db-table tbody tr:hover td { background: rgba(33,36,39,0.04); }
 .db-table-scroll { overflow-x: auto; max-height: 520px; overflow-y: auto; }
 
 /* ── Inline edit controls ────────────────────────────────────────────────── */
@@ -178,11 +178,11 @@
 .badge-low      { background: var(--qg-green-bg);  color: var(--qg-green);  border: 1px solid var(--qg-green-border); }
 .badge-completed  { background: var(--qg-green-bg);  color: var(--qg-green);  border: 1px solid var(--qg-green-border); }
 .badge-inprogress { background: var(--qg-teal-bg);   color: var(--qg-teal);   border: 1px solid var(--qg-teal-border); }
-.badge-notstarted { background: rgba(15,23,42,0.06); color: var(--qg-text-3); border: 1px solid var(--qg-border); }
+.badge-notstarted { background: rgba(33,36,39,0.06); color: var(--qg-text-3); border: 1px solid var(--qg-border); }
 .badge-underreview { background: var(--qg-orange-bg); color: var(--qg-orange); border: 1px solid var(--qg-orange-border); }
 .badge-critical { background: var(--qg-red-bg);    color: var(--qg-red);    border: 1px solid var(--qg-red-border); }
 .badge-yes { background: var(--qg-green-bg);  color: var(--qg-green);  border: 1px solid var(--qg-green-border); }
-.badge-no  { background: rgba(15,23,42,0.06); color: var(--qg-text-3); border: 1px solid var(--qg-border); }
+.badge-no  { background: rgba(33,36,39,0.06); color: var(--qg-text-3); border: 1px solid var(--qg-border); }
 
 /* ── Progress Bar ────────────────────────────────────────────────────────── */
 .progress-bar-wrap { display: flex; align-items: center; gap: 8px; }
@@ -203,7 +203,7 @@
   padding: 12px 20px;
   border-radius: var(--qg-radius-md) var(--qg-radius-md) 0 0;
   font-size: 13px; font-weight: var(--qg-weight-bold);
-  letter-spacing: .05em; color: #0F172A;
+  letter-spacing: .05em; color: #212427;
 }
 .dhanasar-table-wrap {
   border: 1px solid var(--qg-border);
@@ -233,10 +233,10 @@
 .ev-domain-pill {
   font-family: var(--qg-font); font-size: 11px; font-weight: var(--qg-weight-semi);
   padding: 4px 10px; border-radius: var(--qg-radius-pill); cursor: pointer;
-  border: 1px solid var(--qg-border-2); background: rgba(15,23,42,0.06); color: var(--qg-text-3);
+  border: 1px solid var(--qg-border-2); background: rgba(33,36,39,0.06); color: var(--qg-text-3);
   transition: var(--qg-ease);
 }
-.ev-domain-pill:hover { background: rgba(15,23,42,0.10); color: var(--qg-text-1); }
+.ev-domain-pill:hover { background: rgba(33,36,39,0.10); color: var(--qg-text-1); }
 .ev-domain-pill.active { background: var(--qg-gold); color: #FFFFFF; border-color: transparent; }
 
 /* ── Responsive ──────────────────────────────────────────────────────────── */
@@ -254,6 +254,6 @@
 
 /* ── Plotly chart text — CSS override (more reliable than Plotly's JS font API) ── */
 /* Dark mode (default): bright text on dark background */
-.js-plotly-plot text { fill: rgba(15,23,42,0.85) !important; }
+.js-plotly-plot text { fill: rgba(33,36,39,0.85) !important; }
 /* Light mode: near-black text on white background */
 :root[data-theme="light"] .js-plotly-plot text { fill: #1F2937 !important; }
